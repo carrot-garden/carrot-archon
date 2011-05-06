@@ -48,8 +48,8 @@
 
 	<scm>
 		<url>http://carrotgarden.googlecode.com/</url>
-		<connection>scm:git:git://github.com/carrot-garden/carrot-basics.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-basics.git</developerConnection>
+		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
 	</scm>
 
 	<properties>
