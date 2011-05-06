@@ -47,7 +47,7 @@
 	</developers>
 
 	<scm>
-		<url>http://carrotgarden.googlecode.com/</url>
+		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
 	</scm>
