@@ -11,8 +11,8 @@ mvn release:perform --batch-mode  --show-version --update-snapshots --define ski
 
 mvn release:rollback --batch-mode  --show-version --update-snapshots --define skipTests
 
-git tag -d carrot-archon-1.0.21
-git push origin :refs/tags/carrot-archon-1.0.21
+git tag -d carrot-archon-1.0.20
+git push origin :refs/tags/carrot-archon-1.0.20
 
 
 
