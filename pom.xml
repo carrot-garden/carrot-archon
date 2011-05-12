@@ -69,6 +69,8 @@
 	<dependencyManagement>
 		<dependencies>
 
+			<!-- MAIN -->
+
 			<dependency>
 				<groupId>org.osgi</groupId>
 				<artifactId>org.osgi.compendium</artifactId>
@@ -105,6 +107,8 @@
 				<version>0.9.28</version>
 				<scope>runtime</scope>
 			</dependency>
+
+			<!-- TEST -->
 
 			<dependency>
 				<groupId>junit</groupId>
