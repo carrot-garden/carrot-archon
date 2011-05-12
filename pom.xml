@@ -188,6 +188,7 @@
 					<executions>
 						<execution>
 							<id>scr</id>
+							<phase>process-classes</phase>
 							<goals>
 								<goal>scr</goal>
 							</goals>
@@ -208,6 +209,7 @@
 					<executions>
 						<execution>
 							<id>manifest</id>
+							<phase>process-classes</phase>
 							<goals>
 								<goal>manifest</goal>
 							</goals>
