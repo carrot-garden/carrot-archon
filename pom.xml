@@ -211,6 +211,14 @@
 							<Service-Component>OSGI-INF/serviceComponents.xml</Service-Component>
 						</instructions>
 					</configuration>
+					<executions>
+						<execution>
+							<id>manifest</id>
+							<goals>
+								<goal>manifest</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 
 				<plugin>
