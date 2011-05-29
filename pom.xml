@@ -267,6 +267,12 @@
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.3.2</version>
 					<configuration>
@@ -318,7 +324,7 @@
 				</plugin>
 
 				<plugin>
-					<!-- generate javadoc -->
+					<groupId>org.apache.maven.plugins</groupId>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>2.7</version>
@@ -363,6 +369,7 @@
 
 				<!-- enable both junit and testng -->
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.7.2</version>
 					<dependencies>
@@ -387,23 +394,15 @@
 
 			<!-- enforce java version -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
 			<!-- enforce maven version -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
-
-			<!-- generate javadoc -->
-			<!-- <plugin> -->
-			<!-- <artifactId>maven-javadoc-plugin</artifactId> -->
-			<!-- </plugin> -->
-
-			<!-- generate source -->
-			<!-- <plugin> -->
-			<!-- <artifactId>maven-source-plugin</artifactId> -->
-			<!-- </plugin> -->
 
 			<!-- setup custom properties -->
 			<plugin>
@@ -447,6 +446,7 @@
 
 			<plugin>
 				<!-- release to sonaytype staging repo -->
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
 					<!-- used by release:prepare -->
