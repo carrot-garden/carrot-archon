@@ -379,20 +379,17 @@
 						<scalaVersion>${carrotScalaVersion}</scalaVersion>
 						<sendJavaToScalac>false</sendJavaToScalac>
 						<checkMultipleScalaVersions>false</checkMultipleScalaVersions>
+						<jvmArgs>
+							<jvmArg>-Xms64m</jvmArg>
+							<jvmArg>-Xmx1024m</jvmArg>
+						</jvmArgs>
 					</configuration>
 					<executions>
+						<!-- compile java first, scala second -->
 						<execution>
-							<id>scala-compile</id>
-							<phase>process-resources</phase>
 							<goals>
 								<goal>add-source</goal>
 								<goal>compile</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>scala-test-compile</id>
-							<phase>process-test-resources</phase>
-							<goals>
 								<goal>testCompile</goal>
 							</goals>
 						</execution>
@@ -489,6 +486,7 @@
 			<build>
 
 				<plugins>
+
 
 
 				</plugins>
