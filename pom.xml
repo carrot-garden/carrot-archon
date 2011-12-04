@@ -58,7 +58,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<carrotJavaVersion>1.6</carrotJavaVersion>
+		<carrotJavaVersion>1.7</carrotJavaVersion>
+		<carrotScalaVersion>2.9.1</carrotScalaVersion>
 		<carrotMavenVersion>3.0.3</carrotMavenVersion>
 
 	</properties>
@@ -368,6 +369,26 @@
 					<groupId>org.scala-tools</groupId>
 					<artifactId>maven-scala-plugin</artifactId>
 					<version>2.15.2</version>
+					<configuration>
+						<scalaVersion>${carrotScalaVersion}</scalaVersion>
+					</configuration>
+					<executions>
+						<execution>
+							<id>scala-compile</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>add-source</goal>
+								<goal>compile</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>scala-test-compile</id>
+							<phase>process-test-resources</phase>
+							<goals>
+								<goal>testCompile</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 
 			</plugins>
