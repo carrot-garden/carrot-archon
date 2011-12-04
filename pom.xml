@@ -73,6 +73,12 @@
 			<!-- MAIN -->
 
 			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-library</artifactId>
+				<version>${carrotScalaVersion}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.osgi</groupId>
 				<artifactId>org.osgi.compendium</artifactId>
 				<version>4.2.0</version>
@@ -371,6 +377,8 @@
 					<version>2.15.2</version>
 					<configuration>
 						<scalaVersion>${carrotScalaVersion}</scalaVersion>
+						<sendJavaToScalac>false</sendJavaToScalac>
+						<checkMultipleScalaVersions>false</checkMultipleScalaVersions>
 					</configuration>
 					<executions>
 						<execution>
