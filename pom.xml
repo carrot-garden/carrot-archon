@@ -17,10 +17,12 @@
 	<description>${project.artifactId} experimental libraries</description>
 	<inceptionYear>2011</inceptionYear>
 
+
 	<organization>
 		<name>carrotgarden</name>
 		<url>http://www.carrotgarden.com/</url>
 	</organization>
+
 
 	<licenses>
 		<license>
