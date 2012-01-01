@@ -519,33 +519,4 @@
 
 	</build>
 
-	<profiles>
-
-		<profile>
-
-			<id>com.carrotgarden.maven</id>
-
-			<distributionManagement>
-				<repository>
-					<id>com.carrotgarden.maven.release</id>
-					<url>s3://maven.carrotgarden.com/release</url>
-				</repository>
-				<snapshotRepository>
-					<id>com.carrotgarden.maven.snapshot</id>
-					<url>s3://maven.carrotgarden.com/snapshot</url>
-				</snapshotRepository>
-			</distributionManagement>
-
-			<build>
-
-				<plugins>
-
-				</plugins>
-
-			</build>
-
-		</profile>
-
-	</profiles>
-
 </project>
