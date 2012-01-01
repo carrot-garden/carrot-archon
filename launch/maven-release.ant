@@ -1,0 +1,14 @@
+<project default="release" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="release">
+		<exec executable="mvn">
+			<arg value="release:prepare" />
+			<arg value="release:perform" />
+			<arg value="--activate-profiles" />
+			<arg value="com.carrotgarden.maven" />
+		</exec>
+	</target>
+
+</project>
