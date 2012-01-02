@@ -1,0 +1,12 @@
+<project default="snapshot" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="snapshot">
+		<exec executable="mvn">
+			<arg value="clean" />
+			<arg value="deploy" />
+		</exec>
+	</target>
+
+</project>

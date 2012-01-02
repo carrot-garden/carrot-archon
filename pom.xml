@@ -77,9 +77,6 @@
 
 	</properties>
 
-	<modules>
-	</modules>
-
 	<dependencyManagement>
 		<dependencies>
 
@@ -523,15 +520,15 @@
 
 		<profile>
 
-			<id>com.carrotgarden.maven</id>
+			<id>com.carrotgarden.maven.s3</id>
 
 			<distributionManagement>
 				<repository>
-					<id>com.carrotgarden.maven.release</id>
+					<id>com.carrotgarden.maven.s3.release</id>
 					<url>s3://maven.carrotgarden.com/release</url>
 				</repository>
 				<snapshotRepository>
-					<id>com.carrotgarden.maven.snapshot</id>
+					<id>com.carrotgarden.maven.s3.snapshot</id>
 					<url>s3://maven.carrotgarden.com/snapshot</url>
 				</snapshotRepository>
 			</distributionManagement>

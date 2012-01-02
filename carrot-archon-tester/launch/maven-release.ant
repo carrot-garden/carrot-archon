@@ -1,0 +1,12 @@
+<project default="release" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="release">
+		<exec executable="mvn">
+			<arg value="release:prepare" />
+			<arg value="release:perform" />
+		</exec>
+	</target>
+
+</project>
