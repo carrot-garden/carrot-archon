@@ -1,0 +1,21 @@
+<project default="snapshot" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="snapshot">
+
+		<exec executable="rm">
+			<arg value="--force" />
+			<arg value="--recursive" />
+			<arg value="${user.home}/.m2/repository/com/carrotgarden/carrot-archon" />
+		</exec>
+
+		<exec executable="mvn">
+			<arg value="install" />
+			<arg value="--define" />
+			<arg value="skipTests" />
+		</exec>
+
+	</target>
+
+</project>
