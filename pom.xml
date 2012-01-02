@@ -537,37 +537,6 @@
 				</snapshotRepository>
 			</distributionManagement>
 
-			<repositories>
-				<repository>
-					<id>com.carrotgarden.maven.release</id>
-					<url>s3://maven.carrotgarden.com/release</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-				<repository>
-					<id>com.carrotgarden.maven.snapshot</id>
-					<url>s3://maven.carrotgarden.com/snapshot</url>
-					<releases>
-						<enabled>false</enabled>
-					</releases>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-
-			<build>
-
-				<plugins>
-
-				</plugins>
-
-			</build>
-
 		</profile>
 
 	</profiles>
