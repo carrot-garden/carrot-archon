@@ -557,7 +557,7 @@
 		</profile>
 
 		<profile>
-			<id>com.carrotgarden.maven.s3</id>
+			<id>carrot-repo-s3</id>
 			<distributionManagement>
 				<repository>
 					<id>com.carrotgarden.maven.s3.release</id>
@@ -571,7 +571,7 @@
 		</profile>
 
 		<profile>
-			<id>com.carrotgarden.maven.http</id>
+			<id>carrot-repo-http</id>
 			<repositories>
 				<repository>
 					<id>com.carrotgarden.maven.http.release</id>

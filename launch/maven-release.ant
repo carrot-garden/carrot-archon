@@ -9,7 +9,9 @@
 			<arg value="--define" />
 			<arg value="resume=false" />
 			<arg value="--activate-profiles" />
-			<arg value="com.carrotgarden.maven.s3" />
+			<arg value="carrot-repo-s3" />
+			<arg value="--activate-profiles" />
+			<arg value="carrot-repo-http" />
 		</exec>
 	</target>
 
