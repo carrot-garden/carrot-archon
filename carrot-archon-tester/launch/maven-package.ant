@@ -1,11 +1,11 @@
-<project default="snapshot" basedir="./..">
+<project default="maven" basedir="./..">
 
 	<echo message="basedir : ${basedir}" />
 
-	<target name="snapshot">
+	<target name="maven">
 		<exec executable="mvn">
 			<arg value="clean" />
-			<arg value="deploy" />
+			<arg value="package" />
 		</exec>
 	</target>
 

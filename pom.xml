@@ -9,7 +9,7 @@
 		<version>7</version>
 	</parent>
 
-	<groupId>com.carrotgarden</groupId>
+	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -29,8 +29,8 @@
 	</repositories>
 
 	<name>${project.artifactId}</name>
-	<description>${project.artifactId} experimental libraries</description>
-	<inceptionYear>2011</inceptionYear>
+	<description>${project.artifactId}</description>
+	<inceptionYear>2010</inceptionYear>
 
 	<organization>
 		<name>carrotgarden</name>
@@ -52,10 +52,10 @@
 			<name>Andrei Pozolotin</name>
 			<email>Andrei dot Pozolotin at gmail dot com</email>
 			<roles>
-				<role>owner</role>
+				<role>gardener</role>
 			</roles>
 			<properties>
-				<credits>the carrots gardener</credits>
+				<credits>gardens carrots</credits>
 			</properties>
 		</developer>
 
@@ -76,9 +76,9 @@
 		<carrotScalaVersion>2.9.1</carrotScalaVersion>
 		<carrotMavenVersion>3.0.3</carrotMavenVersion>
 
-		<amazonRelease>repository.carrotgarden.com</amazonRelease>
-		<amazonStaging>repository-dev.carrotgarden.com</amazonStaging>
-		<amazonActiveName>activate-amazon-release-vs-staging-profile</amazonActiveName>
+		<amazonReleaseRepo>repository.carrotgarden.com</amazonReleaseRepo>
+		<amazonStagingRepo>repository-dev.carrotgarden.com</amazonStagingRepo>
+		<amazonActiveRepo>activate-amazon-release-vs-staging-profile</amazonActiveRepo>
 
 	</properties>
 
@@ -156,6 +156,18 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -528,28 +540,64 @@
 		<profile>
 			<id>amazon-release</id>
 			<properties>
-				<amazonActiveName>${amazonReleaseName}</amazonActiveName>
+				<amazonActiveRepo>${amazonReleaseRepo}</amazonActiveRepo>
 			</properties>
 		</profile>
 		<profile>
 			<id>amazon-staging</id>
 			<properties>
-				<amazonActiveName>${amazonStagingName}</amazonActiveName>
+				<amazonActiveRepo>${amazonStagingRepo}</amazonActiveRepo>
 			</properties>
 		</profile>
 
 		<profile>
 			<id>com.carrotgarden.maven.s3</id>
+			<activation>
+				<file>
+					<exists>.carrot</exists>
+				</file>
+			</activation>
 			<distributionManagement>
 				<repository>
 					<id>com.carrotgarden.maven.s3.release</id>
-					<url>s3://${amazonReleaseName}/maven</url>
+					<url>s3://${amazonReleaseRepo}/maven</url>
 				</repository>
 				<snapshotRepository>
-					<id>com.carrotgarden.maven.s3.snapshot</id>
-					<url>s3://${amazonStagingName}/maven</url>
+					<id>com.carrotgarden.maven.s3.staging</id>
+					<url>s3://${amazonStagingRepo}/maven</url>
 				</snapshotRepository>
 			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>com.carrotgarden.maven.http</id>
+			<activation>
+				<file>
+					<exists>.carrot</exists>
+				</file>
+			</activation>
+			<repositories>
+				<repository>
+					<id>com.carrotgarden.maven.http.release</id>
+					<url>https://${amazonReleaseRepo}/maven</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>com.carrotgarden.maven.http.staging</id>
+					<url>https://${amazonStagingRepo}/maven</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
 		</profile>
 
 		<profile>
