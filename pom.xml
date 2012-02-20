@@ -526,7 +526,7 @@
 					<!-- used by release:perform -->
 					<goals>deploy</goals>
 					<!-- nested invocation arguments -->
-					<arguments>--activate-profiles release</arguments>
+					<arguments>-P release</arguments>
 				</configuration>
 			</plugin>
 
