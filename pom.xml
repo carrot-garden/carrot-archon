@@ -555,7 +555,7 @@
 			<repositories>
 				<repository>
 					<id>com.carrotgarden.maven.http.release</id>
-					<url>https://${amazonReleaseRepo}/maven</url>
+					<url>https://s3.amazonaws.com/${amazonReleaseRepo}/maven</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -565,7 +565,7 @@
 				</repository>
 				<repository>
 					<id>com.carrotgarden.maven.http.staging</id>
-					<url>https://${amazonStagingRepo}/maven</url>
+					<url>https://s3.amazonaws.com/${amazonStagingRepo}/maven</url>
 					<releases>
 						<enabled>false</enabled>
 					</releases>

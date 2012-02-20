@@ -21,12 +21,20 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>com.carrotgarden.base</groupId>
+			<artifactId>carrot-archon-tester-1</artifactId>
+			<version>1.2.0</version>
+		</dependency>
 
 	</dependencies>
 
 	<profiles>
 		<profile>
 			<id>carrot-distribution</id>
+		</profile>
+		<profile>
+			<id>carrot-repository</id>
 		</profile>
 	</profiles>
 
