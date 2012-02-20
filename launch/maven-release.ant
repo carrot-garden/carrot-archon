@@ -9,7 +9,7 @@
 			<arg value="--define" />
 			<arg value="resume=false" />
 			<arg value="--activate-profiles" />
-			<arg value="carrot-distribution,carrot-repository" />
+			<arg value="carrot-distribution" />
 		</exec>
 	</target>
 
