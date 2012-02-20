@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -10,7 +11,7 @@
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
-	<version>1.1.2-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<url>http://www.carrotgarden.com/</url>
@@ -549,13 +550,20 @@
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
-
 		<profile>
 			<id>carrot-repository</id>
+			<activation>
+				<file>
+					<exists>.carrot</exists>
+				</file>
+			</activation>
+			<properties>
+				<amazonBucketHost>s3.amazonaws.com</amazonBucketHost>
+			</properties>
 			<repositories>
 				<repository>
 					<id>com.carrotgarden.maven.http.release</id>
-					<url>https://s3.amazonaws.com/${amazonReleaseRepo}/maven</url>
+					<url>https://${amazonBucketHost}/${amazonReleaseRepo}/maven</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -565,7 +573,7 @@
 				</repository>
 				<repository>
 					<id>com.carrotgarden.maven.http.staging</id>
-					<url>https://s3.amazonaws.com/${amazonStagingRepo}/maven</url>
+					<url>https://${amazonBucketHost}/${amazonStagingRepo}/maven</url>
 					<releases>
 						<enabled>false</enabled>
 					</releases>
