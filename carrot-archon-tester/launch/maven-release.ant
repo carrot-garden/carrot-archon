@@ -8,6 +8,8 @@
 			<arg value="release:perform" />
 			<arg value="--define" />
 			<arg value="resume=false" />
+			<arg value="--activate-profiles" />
+			<arg value="carrot-distribution" />
 		</exec>
 	</target>
 
