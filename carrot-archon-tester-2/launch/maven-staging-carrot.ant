@@ -1,0 +1,14 @@
+<project default="maven" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="maven">
+		<exec executable="mvn">
+			<arg value="clean" />
+			<arg value="deploy" />
+			<arg value="--activate-profiles" />
+			<arg value="carrot-distribution" />
+		</exec>
+	</target>
+
+</project>
