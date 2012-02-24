@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -483,7 +484,7 @@
 				</executions>
 			</plugin>
 
-			<!-- require osgi bundle packaging -->
+			<!-- ebable osgi bundle packaging -->
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -495,66 +496,6 @@
 	</build>
 
 	<profiles>
-
-		<profile>
-			<id>amazon-release</id>
-			<properties>
-				<amazonActiveRepo>${amazonReleaseRepo}</amazonActiveRepo>
-			</properties>
-		</profile>
-		<profile>
-			<id>amazon-staging</id>
-			<properties>
-				<amazonActiveRepo>${amazonStagingRepo}</amazonActiveRepo>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>carrot-distribution</id>
-			<distributionManagement>
-				<repository>
-					<id>com.carrotgarden.maven.s3.release</id>
-					<url>s3://${amazonReleaseRepo}/maven</url>
-				</repository>
-				<snapshotRepository>
-					<id>com.carrotgarden.maven.s3.staging</id>
-					<url>s3://${amazonStagingRepo}/maven</url>
-				</snapshotRepository>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>carrot-repository</id>
-			<activation>
-				<file>
-					<exists>.carrot</exists>
-				</file>
-			</activation>
-			<properties>
-				<amazonBucketHost>s3.amazonaws.com</amazonBucketHost>
-			</properties>
-			<repositories>
-				<repository>
-					<id>com.carrotgarden.maven.http.release</id>
-					<url>https://${amazonBucketHost}/${amazonReleaseRepo}/maven</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-				<repository>
-					<id>com.carrotgarden.maven.http.staging</id>
-					<url>https://${amazonBucketHost}/${amazonStagingRepo}/maven</url>
-					<releases>
-						<enabled>false</enabled>
-					</releases>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
 
 		<profile>
 			<id>release</id>
@@ -601,56 +542,141 @@
 			</build>
 		</profile>
 
+		<!-- private carrot garden buckets -->
+		<profile>
+			<id>amazon-release</id>
+			<properties>
+				<amazonActiveRepo>${amazonReleaseRepo}</amazonActiveRepo>
+			</properties>
+		</profile>
+		<profile>
+			<id>amazon-staging</id>
+			<properties>
+				<amazonActiveRepo>${amazonStagingRepo}</amazonActiveRepo>
+			</properties>
+		</profile>
+
+		<!-- private carrot garden repository -->
+		<profile>
+			<id>carrot-distribution</id>
+			<activation>
+				<file>
+					<exists>.carrot</exists>
+				</file>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<id>com.carrotgarden.maven.s3.release</id>
+					<url>s3://${amazonReleaseRepo}/maven</url>
+				</repository>
+				<snapshotRepository>
+					<id>com.carrotgarden.maven.s3.staging</id>
+					<url>s3://${amazonStagingRepo}/maven</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<id>carrot-repository</id>
+			<activation>
+				<file>
+					<exists>.carrot</exists>
+				</file>
+			</activation>
+			<properties>
+				<amazonBucketHost>s3.amazonaws.com</amazonBucketHost>
+			</properties>
+			<repositories>
+				<repository>
+					<id>com.carrotgarden.maven.http.release</id>
+					<url>https://${amazonBucketHost}/${amazonReleaseRepo}/maven</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>com.carrotgarden.maven.http.staging</id>
+					<url>https://${amazonBucketHost}/${amazonStagingRepo}/maven</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+
+		<!-- public carrot garden snapshots -->
+		<profile>
+			<id>sonatype-nexus-snapshots</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>sonatype-nexus-snapshots</id>
+					<name>Sonatype Nexus Snapshots</name>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>sonatype-nexus-snapshots</id>
+					<name>Sonatype Nexus Snapshots</name>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+		<!-- public carrot garden releases (before promotion to central) -->
+		<profile>
+			<id>sonatype-nexus-releases</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>sonatype-nexus-releases</id>
+					<name>Sonatype Nexus Releases</name>
+					<url>https://oss.sonatype.org/content/repositories/releases</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>sonatype-nexus-releases</id>
+					<name>Sonatype Nexus Releases</name>
+					<url>https://oss.sonatype.org/content/repositories/releases</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
 	</profiles>
-
-	<repositories>
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>sonatype-nexus-releases</id>
-			<name>Sonatype Nexus Releases</name>
-			<url>https://oss.sonatype.org/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>sonatype-nexus-releases</id>
-			<name>Sonatype Nexus Releases</name>
-			<url>https://oss.sonatype.org/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 </project>
