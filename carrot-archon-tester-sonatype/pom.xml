@@ -23,8 +23,12 @@
 		<repository>
 			<id>carrot-sonatype-staging</id>
 			<url>https://oss.sonatype.org/content/repositories/${carrotStagingId}/</url>
-			<releases>true</releases>
-			<snapshots>false</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
