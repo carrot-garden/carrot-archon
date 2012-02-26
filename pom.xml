@@ -1,12 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
@@ -19,7 +14,7 @@
 	<inceptionYear>2010</inceptionYear>
 
 	<organization>
-		<name>carrotgarden</name>
+		<name>CarrotGarden</name>
 		<url>http://www.carrotgarden.com/</url>
 	</organization>
 
@@ -60,11 +55,17 @@
 
 		<carrotJavaVersion>1.7</carrotJavaVersion>
 		<carrotScalaVersion>2.9.1</carrotScalaVersion>
-		<carrotMavenVersion>3.0.3</carrotMavenVersion>
+		<carrotMavenVersion>3.0.4</carrotMavenVersion>
 
+		<!-- carrot garden private repository -->
 		<amazonActiveRepo>activate-via-profile</amazonActiveRepo>
 		<amazonReleaseRepo>repository.carrotgarden.com</amazonReleaseRepo>
 		<amazonStagingRepo>repository-dev.carrotgarden.com</amazonStagingRepo>
+
+		<!-- carrot garden public repository -->
+		<sonatypeReleaseURL>https://oss.sonatype.org/content/repositories/releases</sonatypeReleaseURL>
+		<sonatypeStagingURL>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatypeStagingURL>
+		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 	</properties>
 
@@ -155,6 +156,7 @@
 
 		<extensions>
 
+			<!-- enable amazon bucket transport -->
 			<extension>
 				<groupId>org.kuali.maven.wagons</groupId>
 				<artifactId>maven-s3-wagon</artifactId>
@@ -391,7 +393,6 @@
 					</configuration>
 				</plugin>
 
-				<!-- override sonatype parent -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
@@ -414,7 +415,6 @@
 					</executions>
 				</plugin>
 
-				<!-- override sonatype parent -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
@@ -433,6 +433,7 @@
 
 		</pluginManagement>
 
+		<!-- build plugins active by default -->
 		<plugins>
 
 			<!-- enforce maven version -->
@@ -447,13 +448,20 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
+			<!-- ebable osgi bundle packaging -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+			</plugin>
+
 			<!-- provide custom properties -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>groovy-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>setup-custom-properties</id>
+						<id>provide-custom-properties</id>
 						<phase>validate</phase>
 						<goals>
 							<goal>execute</goal>
@@ -481,13 +489,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-			<!-- ebable osgi bundle packaging -->
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
 			</plugin>
 
 		</plugins>
@@ -555,12 +556,12 @@
 			</properties>
 		</profile>
 
-		<!-- private carrot garden repository -->
+		<!-- private carrot garden distribution -->
 		<profile>
-			<id>carrot-distribution</id>
+			<id>amazon-distribution</id>
 			<activation>
 				<file>
-					<exists>.carrot</exists>
+					<exists>.amazon</exists>
 				</file>
 			</activation>
 			<distributionManagement>
@@ -574,11 +575,13 @@
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
+
+		<!-- private carrot garden repository -->
 		<profile>
-			<id>carrot-repository</id>
+			<id>amazon-repository</id>
 			<activation>
 				<file>
-					<exists>.carrot</exists>
+					<exists>.amazon</exists>
 				</file>
 			</activation>
 			<properties>
@@ -608,6 +611,28 @@
 			</repositories>
 		</profile>
 
+		<!-- public carrot garden distribution -->
+		<profile>
+			<id>sonatype-nexus-staging</id>
+			<activation>
+				<file>
+					<missing>.amazon</missing>
+				</file>
+			</activation>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>sonatype-nexus-snapshots</id>
+					<name>Sonatype Nexus Snapshots</name>
+					<url>${sonatypeSnapshotsURL}</url>
+				</snapshotRepository>
+				<repository>
+					<id>sonatype-nexus-staging</id>
+					<name>Sonatype Nexus Staging</name>
+					<url>${sonatypeStagingURL}</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
 		<!-- public carrot garden snapshots -->
 		<profile>
 			<id>sonatype-nexus-snapshots</id>
@@ -618,7 +643,7 @@
 				<repository>
 					<id>sonatype-nexus-snapshots</id>
 					<name>Sonatype Nexus Snapshots</name>
-					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<url>${sonatypeSnapshotsURL}</url>
 					<releases>
 						<enabled>false</enabled>
 					</releases>
@@ -631,7 +656,7 @@
 				<pluginRepository>
 					<id>sonatype-nexus-snapshots</id>
 					<name>Sonatype Nexus Snapshots</name>
-					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<url>${sonatypeSnapshotsURL}</url>
 					<releases>
 						<enabled>false</enabled>
 					</releases>
@@ -652,7 +677,7 @@
 				<repository>
 					<id>sonatype-nexus-releases</id>
 					<name>Sonatype Nexus Releases</name>
-					<url>https://oss.sonatype.org/content/repositories/releases</url>
+					<url>${sonatypeReleaseURL}</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -665,7 +690,7 @@
 				<pluginRepository>
 					<id>sonatype-nexus-releases</id>
 					<name>Sonatype Nexus Releases</name>
-					<url>https://oss.sonatype.org/content/repositories/releases</url>
+					<url>${sonatypeReleaseURL}</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
