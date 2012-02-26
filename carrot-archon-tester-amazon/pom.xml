@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.carrotgarden.base</groupId>
 		<artifactId>carrot-archon</artifactId>
-		<version>1.1.3-SNAPSHOT</version>
+		<version>1.1.3</version>
 		<relativePath />
 	</parent>
 
@@ -19,12 +19,35 @@
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>comcarrotgarden-312</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-312/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>comcarrotgarden-314</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-314/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 
 		<dependency>
 			<groupId>com.carrotgarden.base</groupId>
 			<artifactId>carrot-archon-tester-sonatype</artifactId>
-			<version>1.2.1-SNAPSHOT</version>
+			<version>1.2.1</version>
 		</dependency>
 
 	</dependencies>
