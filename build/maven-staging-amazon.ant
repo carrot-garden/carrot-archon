@@ -4,12 +4,10 @@
 
 	<target name="maven">
 		<exec executable="mvn">
-			<arg value="release:prepare" />
-			<arg value="release:perform" />
-			<arg value="--define" />
-			<arg value="resume=false" />
+			<arg value="clean" />
+			<arg value="deploy" />
 			<arg value="--activate-profiles" />
-			<arg value="carrot-distribution" />
+			<arg value="amazon-distribution,amazon-repository" />
 		</exec>
 	</target>
 
