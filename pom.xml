@@ -170,6 +170,12 @@
 			<plugins>
 
 				<plugin>
+					<groupId>com.mycila.maven-license-plugin</groupId>
+					<artifactId>maven-license-plugin</artifactId>
+					<version>1.10.b1</version>
+				</plugin>
+
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jxr-plugin</artifactId>
 					<version>2.3</version>
@@ -717,6 +723,52 @@
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
+		</profile>
+
+		<profile>
+			<id>licence</id>
+			<properties>
+				<licenceFile>src/license/license-osi-bsd.txt</licenceFile>
+				<licenceYear>${project.inceptionYear}</licenceYear>
+				<licenceName>Andrei Pozolotin</licenceName>
+				<licenceMail>Andrei.Pozolotin@gmail.com</licenceMail>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.mycila.maven-license-plugin</groupId>
+						<artifactId>maven-license-plugin</artifactId>
+						<configuration>
+							<header>${licenceFile}</header>
+							<strictCheck>true</strictCheck>
+							<properties>
+								<year>${licenceYear}</year>
+								<name>${licenceName}</name>
+								<mail>${licenceMail}</mail>
+							</properties>
+							<mapping>
+								<ant>XML_STYLE</ant>
+								<scala>JAVADOC_STYLE</scala>
+								<markdown>XML_STYLE</markdown>
+							</mapping>
+							<excludes>
+								<entry>src/license/**</entry>
+								<entry>**/*.template</entry>
+								<entry>**/*.json</entry>
+							</excludes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>format</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>format</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 
 	</profiles>
