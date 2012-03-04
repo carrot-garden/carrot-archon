@@ -734,8 +734,8 @@
 			<id>license</id>
 			<properties>
 
-				<licenseSource>./src/license</licenseSource>
-				<licenseTarget>./target/license</licenseTarget>
+				<licenseSource>src/license</licenseSource>
+				<licenseTarget>target/license</licenseTarget>
 				<licenseFile>license-osi-bsd.txt</licenseFile>
 
 				<licenseYear>${project.inceptionYear}-${carrotTimeYear}</licenseYear>
@@ -796,7 +796,7 @@
 								<gitignore>SCRIPT_STYLE</gitignore>
 							</mapping>
 							<excludes>
-								<entry>${licenseSource}/**</entry>
+								<entry>**/${licenseSource}/**</entry>
 								<entry>**/*.template</entry>
 								<entry>**/*.json</entry>
 							</excludes>
