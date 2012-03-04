@@ -42,6 +42,15 @@
 
 	</developers>
 
+	<mailingLists>
+		<mailingList>
+			<name>CarrotGarden</name>
+			<post>tag : carrot-garden</post>
+			<subscribe>http://stackoverflow.com/users/login</subscribe>
+			<archive>http://stackoverflow.com/tags/carrot-garden</archive>
+		</mailingList>
+	</mailingLists>
+
 	<scm>
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
