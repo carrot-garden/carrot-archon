@@ -508,6 +508,10 @@
 		project.properties["carrotTimeISO"] = carrotTimeISO;
 		println("### carrotTimeISO=" + carrotTimeISO);
 		//
+		carrotTimeYear=MessageFormat.format("{0,date,yyyy}",carrotTimeLong);
+		project.properties["carrotTimeYear"] = carrotTimeYear;
+		println("### carrotTimeYear=" + carrotTimeYear);
+		//
 		]]>
 							</source>
 						</configuration>
@@ -725,30 +729,60 @@
 			</pluginRepositories>
 		</profile>
 
+		<!-- license editor  -->
 		<profile>
 			<id>license</id>
 			<properties>
-			
-				<licenseDir>src/license</licenseDir>
+
+				<licenseSource>./src/license</licenseSource>
+				<licenseTarget>./target/license</licenseTarget>
 				<licenseFile>license-osi-bsd.txt</licenseFile>
-				
-				<licenseYear>${project.inceptionYear}</licenseYear>
+
+				<licenseYear>${project.inceptionYear}-${carrotTimeYear}</licenseYear>
 				<licenseName>Andrei Pozolotin</licenseName>
 				<licenseMail>Andrei.Pozolotin@gmail.com</licenseMail>
 
 				<licenseGroupId>com.carrotgarden.base</licenseGroupId>
-				<licenseArtifactId>carrot-archon-licence</licenseArtifactId>
+				<licenseArtifactId>carrot-archon-license</licenseArtifactId>
 				<licenseVersion>RELEASE</licenseVersion>
-				
+
 			</properties>
 			<build>
 				<plugins>
-				
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>license-unpack</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${licenseGroupId}</groupId>
+											<artifactId>${licenseArtifactId}</artifactId>
+											<version>${licenseVersion}</version>
+											<type>jar</type>
+										</artifactItem>
+									</artifactItems>
+									<outputDirectory>${licenseTarget}</outputDirectory>
+									<overWriteIfNewer>true</overWriteIfNewer>
+									<overWriteReleases>true</overWriteReleases>
+									<overWriteSnapshots>true</overWriteSnapshots>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
 					<plugin>
 						<groupId>com.mycila.maven-license-plugin</groupId>
 						<artifactId>maven-license-plugin</artifactId>
 						<configuration>
-							<header>${licenseDir}/${licenseFile}</header>
+							<header>${licenseTarget}/${licenseFile}</header>
 							<strictCheck>true</strictCheck>
 							<properties>
 								<year>${licenseYear}</year>
@@ -761,14 +795,14 @@
 								<scala>JAVADOC_STYLE</scala>
 							</mapping>
 							<excludes>
-								<entry>${licenseDir}/**</entry>
+								<entry>${licenseSource}/**</entry>
 								<entry>**/*.template</entry>
 								<entry>**/*.json</entry>
 							</excludes>
 						</configuration>
 						<executions>
 							<execution>
-								<id>format</id>
+								<id>license-format</id>
 								<phase>process-resources</phase>
 								<goals>
 									<goal>format</goal>
@@ -776,7 +810,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					
+
 				</plugins>
 			</build>
 		</profile>

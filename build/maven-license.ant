@@ -13,12 +13,10 @@
 
 	<target name="maven">
 		<exec executable="mvn">
-			<arg value="release:prepare" />
-			<arg value="release:perform" />
-			<arg value="--define" />
-			<arg value="resume=false" />
+			<arg value="clean" />
+			<arg value="process-resources" />
 			<arg value="--activate-profiles" />
-			<arg value="amazon-distribution,amazon-repository" />
+			<arg value="license" />
 		</exec>
 	</target>
 
