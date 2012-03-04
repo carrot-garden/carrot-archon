@@ -726,33 +726,42 @@
 		</profile>
 
 		<profile>
-			<id>licence</id>
+			<id>license</id>
 			<properties>
-				<licenceFile>src/license/license-osi-bsd.txt</licenceFile>
-				<licenceYear>${project.inceptionYear}</licenceYear>
-				<licenceName>Andrei Pozolotin</licenceName>
-				<licenceMail>Andrei.Pozolotin@gmail.com</licenceMail>
+			
+				<licenseDir>src/license</licenseDir>
+				<licenseFile>license-osi-bsd.txt</licenseFile>
+				
+				<licenseYear>${project.inceptionYear}</licenseYear>
+				<licenseName>Andrei Pozolotin</licenseName>
+				<licenseMail>Andrei.Pozolotin@gmail.com</licenseMail>
+
+				<licenseGroupId>com.carrotgarden.base</licenseGroupId>
+				<licenseArtifactId>carrot-archon-licence</licenseArtifactId>
+				<licenseVersion>RELEASE</licenseVersion>
+				
 			</properties>
 			<build>
 				<plugins>
+				
 					<plugin>
 						<groupId>com.mycila.maven-license-plugin</groupId>
 						<artifactId>maven-license-plugin</artifactId>
 						<configuration>
-							<header>${licenceFile}</header>
+							<header>${licenseDir}/${licenseFile}</header>
 							<strictCheck>true</strictCheck>
 							<properties>
-								<year>${licenceYear}</year>
-								<name>${licenceName}</name>
-								<mail>${licenceMail}</mail>
+								<year>${licenseYear}</year>
+								<name>${licenseName}</name>
+								<mail>${licenseMail}</mail>
 							</properties>
 							<mapping>
+								<md>XML_STYLE</md>
 								<ant>XML_STYLE</ant>
 								<scala>JAVADOC_STYLE</scala>
-								<markdown>XML_STYLE</markdown>
 							</mapping>
 							<excludes>
-								<entry>src/license/**</entry>
+								<entry>${licenseDir}/**</entry>
 								<entry>**/*.template</entry>
 								<entry>**/*.json</entry>
 							</excludes>
@@ -767,6 +776,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					
 				</plugins>
 			</build>
 		</profile>
