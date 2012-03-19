@@ -73,7 +73,7 @@
 		<sonatypeStagingURL>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatypeStagingURL>
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
-		<releaseArguments></releaseArguments>
+		<releaseArguments>--define resume=false</releaseArguments>
 
 	</properties>
 
