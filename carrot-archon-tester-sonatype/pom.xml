@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.carrotgarden.base</groupId>
 		<artifactId>carrot-archon</artifactId>
-		<version>1.1.5-SNAPSHOT</version>
+		<version>1.1.5</version>
 		<relativePath />
 	</parent>
 
 	<artifactId>carrot-archon-tester-sonatype</artifactId>
-	<version>1.2.2-SNAPSHOT</version>
+	<version>1.3.0-SNAPSHOT</version>
 
 	<scm>
 		<url>https://github.com/carrot-garden/carrot-archon</url>
@@ -20,23 +20,23 @@
 	</scm>
 
 	<repositories>
-		<!-- <repository> -->
-		<!-- <id>carrot-sonatype-staging</id> -->
-		<!-- <url>https://oss.sonatype.org/content/repositories/${carrotStagingId}/</url> -->
-		<!-- <releases> -->
-		<!-- <enabled>true</enabled> -->
-		<!-- </releases> -->
-		<!-- <snapshots> -->
-		<!-- <enabled>false</enabled> -->
-		<!-- </snapshots> -->
-		<!-- </repository> -->
+		<repository>
+			<id>carrot-sonatype-staging</id>
+			<url>https://oss.sonatype.org/content/repositories/${carrotStagingId}/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<properties>
 
 		<carrotJavaVersion>1.6</carrotJavaVersion>
 
-		<carrotStagingId>comcarrotgarden-312</carrotStagingId>
+		<carrotStagingId>comcarrotgarden-562</carrotStagingId>
 
 	</properties>
 
