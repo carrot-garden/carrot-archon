@@ -31,13 +31,10 @@
 		<developer>
 			<id>carrot-garden</id>
 			<name>Andrei Pozolotin</name>
-			<email>Andrei.Pozolotin@carrotgarden.com</email>
+			<email>Andrei.Pozolotin@gmail.com</email>
 			<roles>
 				<role>gardener</role>
 			</roles>
-			<properties>
-				<credits>gardens carrots</credits>
-			</properties>
 		</developer>
 
 	</developers>
@@ -75,6 +72,8 @@
 		<sonatypeReleaseURL>https://oss.sonatype.org/content/repositories/releases</sonatypeReleaseURL>
 		<sonatypeStagingURL>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatypeStagingURL>
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
+
+		<releaseArguments></releaseArguments>
 
 	</properties>
 
@@ -114,12 +113,12 @@
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-core</artifactId>
-				<version>1.0.0</version>
+				<version>1.0.1</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
-				<version>1.0.0</version>
+				<version>1.0.1</version>
 			</dependency>
 
 			<!-- TEST -->
@@ -296,31 +295,20 @@
 					<version>2.9</version>
 				</plugin>
 
+				<!-- keep in sync with <reporting> -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>2.8.1</version>
 					<configuration>
 						<quiet>true</quiet>
-						<verbose>false</verbose>
-						<links>
-							<show>public</show>
-							<link>http://docs.oracle.com/javase/6/docs/api/</link>
-						</links>
+						<show>protected</show>
 						<linksource>true</linksource>
-						<detectLinks>true</detectLinks>
-						<windowtitle>${project.name} API ${project.version} /
-							${maven.build.timestamp}</windowtitle>
-						<doctitle>${project.name} API ${project.version} /
-							${maven.build.timestamp}</doctitle>
-						<header><![CDATA[<a href="${project.organization.url}" target="_blank">${project.organization.name}</a>]]></header>
-						<footer><![CDATA[<a href="${project.organization.url}" target="_blank">${project.organization.name}</a>]]></footer>
-						<bottom>
-							<!-- note: these "years" are internal maven-javadoc-plugin tags -->
-							Copyright © {inceptionYear}-{currentYear}
-						<![CDATA[<a href="${project.organization.url}" target="_blank">${project.organization.name}</a>]]>.
-							All Rights Reserved.
-						</bottom>
+						<windowtitle><![CDATA[${project.artifactId}-${project.version} / ${carrotTimeISO}]]></windowtitle>
+						<doctitle><![CDATA[${project.artifactId}-${project.version} / ${carrotTimeISO}]]></doctitle>
+						<header><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${carrotTimeISO}]]></header>
+						<footer><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${carrotTimeISO}]]></footer>
+						<bottom><![CDATA[Copyright © {inceptionYear}-{currentYear} <a href="${project.organization.url}" target="_blank">${project.organization.name}</a>. All Rights Reserved.]]></bottom>
 					</configuration>
 				</plugin>
 
@@ -440,7 +428,7 @@
 								<rules>
 									<requireMavenVersion>
 										<version>${carrotMavenVersion}</version>
-										<message><![CDATA[you must run mavenVersion >= ${carrotMavenVersion}]]></message>
+										<message><![CDATA[you must have mavenVersion >= ${carrotMavenVersion}]]></message>
 									</requireMavenVersion>
 								</rules>
 							</configuration>
@@ -453,12 +441,12 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.2.1</version>
 					<configuration>
-						<!-- used by release:prepare -->
-						<preparationGoals>clean verify</preparationGoals>
-						<!-- used by release:perform -->
-						<goals>deploy</goals>
-						<!-- nested invocation arguments -->
-						<arguments>-P release</arguments>
+						<!-- invocataion: release:prepare -->
+						<preparationGoals>validate clean verify</preparationGoals>
+						<!-- invocataion: release:perform -->
+						<goals>validate deploy</goals>
+						<!-- nested invocation arguments for both release:prepare and release:perform -->
+						<arguments>${releaseArguments}</arguments>
 					</configuration>
 				</plugin>
 
@@ -536,6 +524,11 @@
 
 		<profile>
 			<id>release</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -826,5 +819,43 @@
 		</profile>
 
 	</profiles>
+
+	<reporting>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+
+
+			<!-- keep in sync with <build> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8.1</version>
+				<configuration>
+					<quiet>true</quiet>
+					<show>protected</show>
+					<linksource>true</linksource>
+					<windowtitle><![CDATA[${project.artifactId}-${project.version} / ${carrotTimeISO}]]></windowtitle>
+					<doctitle><![CDATA[${project.artifactId}-${project.version} / ${carrotTimeISO}]]></doctitle>
+					<header><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${carrotTimeISO}]]></header>
+					<footer><![CDATA[<a href="${project.url}" target="_blank">${project.artifactId}</a><br>${project.version} / ${carrotTimeISO}]]></footer>
+					<bottom><![CDATA[Copyright © {inceptionYear}-{currentYear} <a href="${project.organization.url}" target="_blank">${project.organization.name}</a>. All Rights Reserved.]]></bottom>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</reporting>
 
 </project>

@@ -13,8 +13,10 @@
 
 	<target name="maven">
 		<exec executable="mvn">
+			
 			<arg value="clean" />
 			<arg value="install" />
+			
 		</exec>
 	</target>
 

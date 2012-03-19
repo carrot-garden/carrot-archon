@@ -13,13 +13,11 @@
 
 	<target name="maven">
 		<exec executable="mvn">
-			
-			<arg value="release:prepare" />
-			<arg value="release:perform" />
-			
-			<arg value="--define" />
-			<arg value="resume=false" />
-			
+
+			<arg value="validate" />
+			<arg value="clean" />
+			<arg value="site" />
+
 		</exec>
 	</target>
 
