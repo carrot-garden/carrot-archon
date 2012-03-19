@@ -21,8 +21,10 @@
 		</condition>
 		
 		<exec executable="${executable}">
+			
 			<arg value="release:prepare" />
 			<arg value="release:perform" />
+			
 		</exec>
 		
 	</target>
