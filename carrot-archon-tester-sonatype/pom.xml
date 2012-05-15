@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.carrotgarden.base</groupId>
 		<artifactId>carrot-archon</artifactId>
-		<version>1.1.5</version>
+		<version>1.2.0</version>
 		<relativePath />
 	</parent>
 
@@ -20,8 +20,8 @@
 
 	<repositories>
 		<repository>
-			<id>carrot-sonatype-staging</id>
-			<url>https://oss.sonatype.org/content/repositories/${carrotStagingId}/</url>
+			<id>comcarrotgarden-486</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-486/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -34,8 +34,6 @@
 	<properties>
 
 		<carrotJavaVersion>1.6</carrotJavaVersion>
-
-		<carrotStagingId>comcarrotgarden-562</carrotStagingId>
 
 	</properties>
 
