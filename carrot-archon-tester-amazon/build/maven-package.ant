@@ -13,10 +13,10 @@
 
 	<target name="maven">
 		<exec executable="mvn">
+			
 			<arg value="clean" />
 			<arg value="package" />
-			<arg value="--activate-profiles" />
-			<arg value="amazon-distribution,amazon-repository" />
+			
 		</exec>
 	</target>
 
