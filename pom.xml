@@ -62,7 +62,7 @@
 
 		<!-- default versions -->
 		<carrotJavaVersion>1.7</carrotJavaVersion>
-		<carrotScalaVersion>2.9.1</carrotScalaVersion>
+		<carrotScalaVersion>2.9.2</carrotScalaVersion>
 		<carrotMavenVersion>3.0.4</carrotMavenVersion>
 
 		<!-- carrot garden private repository -->
