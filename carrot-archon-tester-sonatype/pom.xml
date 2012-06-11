@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>com.carrotgarden.base</groupId>
 		<artifactId>carrot-archon</artifactId>
-		<version>1.2.0</version>
+		<version>1.2.1</version>
 		<relativePath />
 	</parent>
 
@@ -25,13 +25,12 @@
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
-	  <tag>HEAD</tag>
   </scm>
 
 	<repositories>
 		<repository>
-			<id>comcarrotgarden-486</id>
-			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-486/</url>
+			<id>comcarrotgarden-510</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-510/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
