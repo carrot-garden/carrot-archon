@@ -6,13 +6,22 @@
 # http://www.opensource.org/licenses/bsd-license.php
 #
 
+#
+# eclipse meta data
+#
 .project
 .classpath
 .settings/
 
+#
+# eclipse build
+#
 bin/
+
+#
+# maven build
+#
 target/
-logs/
 
 release.properties
 pom.xml.*
