@@ -1,3 +1,12 @@
+<!--
+
+    Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
+
+    All rights reserved. Licensed under the OSI BSD License.
+
+    http://www.opensource.org/licenses/bsd-license.php
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
@@ -801,13 +810,40 @@
 								<mail>${licenseMail}</mail>
 							</properties>
 							<strictCheck>true</strictCheck>
-							<useDefaultMapping>true</useDefaultMapping>
+							<useDefaultMapping>false</useDefaultMapping>
 							<useDefaultExcludes>false</useDefaultExcludes>
 							<mapping>
+								<!-- carrot -->
 								<md>XML_STYLE</md>
 								<ant>XML_STYLE</ant>
 								<scala>JAVADOC_STYLE</scala>
 								<gitignore>SCRIPT_STYLE</gitignore>
+								<conf>SCRIPT_STYLE</conf>
+								<properties>SCRIPT_STYLE</properties>
+								<!-- default -->
+								<java>JAVADOC_STYLE</java>
+								<groovy>JAVADOC_STYLE</groovy>
+								<js>JAVADOC_STYLE</js>
+								<css>JAVADOC_STYLE</css>
+								<xml>XML_STYLE</xml>
+								<dtd>XML_STYLE</dtd>
+								<xsd>XML_STYLE</xsd>
+								<html>XML_STYLE</html>
+								<htm>XML_STYLE</htm>
+								<xsl>XML_STYLE</xsl>
+								<fml>XML_STYLE</fml>
+								<apt>DOUBLETILDE_STYLE</apt>
+								<properties>SCRIPT_STYLE</properties>
+								<sh>SCRIPT_STYLE</sh>
+								<txt>TEXT</txt>
+								<bat>BATCH</bat>
+								<cmd>BATCH</cmd>
+								<sql>DOUBLEDASHES_STYLE</sql>
+								<jsp>DYNASCRIPT_STYLE</jsp>
+								<ftl>FTL</ftl>
+								<xhtml>XML_STYLE</xhtml>
+								<vm>SHARPSTAR_STYLE</vm>
+								<jspx>XML_STYLE</jspx>
 							</mapping>
 							<includes>
 								<entry>**</entry>
@@ -925,6 +961,7 @@
 								<entry>**/*.odg</entry>
 								<entry>**/*.odf</entry>
 								<entry>**/*.mm</entry>
+								<entry>**/*.log</entry>
 								<!-- // ServiceLoader files -->
 								<entry>**/META-INF/services/**</entry>
 							</excludes>
