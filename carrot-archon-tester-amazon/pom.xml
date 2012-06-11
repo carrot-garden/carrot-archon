@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>com.carrotgarden.base</groupId>
 		<artifactId>carrot-archon</artifactId>
-		<version>1.2.0</version>
+		<version>1.2.1</version>
 		<relativePath />
 	</parent>
 
@@ -16,23 +17,12 @@
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+	</scm>
 
 	<repositories>
 		<repository>
-			<id>comcarrotgarden-486</id>
-			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-486/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>comcarrotgarden-487</id>
-			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-487/</url>
+			<id>comcarrotgarden-497</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-497/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
