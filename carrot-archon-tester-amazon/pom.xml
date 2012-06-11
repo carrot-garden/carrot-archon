@@ -30,8 +30,8 @@
 
 	<repositories>
 		<repository>
-			<id>comcarrotgarden-497</id>
-			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-497/</url>
+			<id>comcarrotgarden-510</id>
+			<url>https://oss.sonatype.org/content/repositories/comcarrotgarden-510/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
