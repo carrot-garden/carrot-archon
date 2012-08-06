@@ -1,19 +1,13 @@
-<!--
-
-    Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
-
-    All rights reserved. Licensed under the OSI BSD License.
-
-    http://www.opensource.org/licenses/bsd-license.php
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com> 
+	All rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
-	<version>1.2.2-SNAPSHOT</version>
+	<version>1.3.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<url>http://www.carrotgarden.com/</url>
@@ -120,7 +114,7 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.6.5</version>
+				<version>1.6.6</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
@@ -144,7 +138,7 @@
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
-				<version>6.5.2</version>
+				<version>6.7</version>
 			</dependency>
 
 			<dependency>
@@ -180,7 +174,7 @@
 			<extension>
 				<groupId>org.kuali.maven.wagons</groupId>
 				<artifactId>maven-s3-wagon</artifactId>
-				<version>1.1.12</version>
+				<version>1.1.14</version>
 			</extension>
 
 		</extensions>
@@ -204,19 +198,25 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-plugin-plugin</artifactId>
-					<version>2.9</version>
+					<version>3.1</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.4</version>
+					<version>2.5</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>wagon-maven-plugin</artifactId>
 					<version>1.0-beta-4</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.kuali.maven.plugins</groupId>
+					<artifactId>wagon-maven-plugin</artifactId>
+					<version>1.0.3</version>
 				</plugin>
 
 				<plugin>
@@ -282,7 +282,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.4.1</version>
+					<version>2.5</version>
 				</plugin>
 
 				<plugin>
@@ -342,17 +342,17 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.12</version>
+					<version>2.12.1</version>
 					<dependencies>
 						<dependency>
 							<groupId>org.apache.maven.surefire</groupId>
 							<artifactId>surefire-junit4</artifactId>
-							<version>2.12</version>
+							<version>2.12.1</version>
 						</dependency>
 						<dependency>
 							<groupId>org.apache.maven.surefire</groupId>
 							<artifactId>surefire-testng</artifactId>
-							<version>2.12</version>
+							<version>2.12.1</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -429,7 +429,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
-					<version>1.1</version>
+					<version>1.1.1</version>
 					<executions>
 						<execution>
 							<id>enforce-maven</id>
@@ -451,7 +451,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>2.3.2</version>
 					<configuration>
 						<!-- invocataion: release:prepare -->
 						<preparationGoals>validate clean verify</preparationGoals>
@@ -652,6 +652,28 @@
 					</snapshots>
 				</repository>
 			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>com.carrotgarden.maven.http.release</id>
+					<url>https://${amazonBucketHost}/${amazonReleaseRepo}/maven</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>com.carrotgarden.maven.http.staging</id>
+					<url>https://${amazonBucketHost}/${amazonStagingRepo}/maven</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
 		</profile>
 
 		<!-- public carrot garden distribution -->
@@ -937,6 +959,7 @@
 								<!-- // binary files - programs -->
 								<entry>**/*.class</entry>
 								<entry>**/*.exe</entry>
+								<entry>**/*.bin</entry>
 								<!-- // checksum files -->
 								<entry>**/*.md5</entry>
 								<entry>**/*.sha1</entry>
@@ -960,6 +983,7 @@
 								<entry>**/*.odg</entry>
 								<entry>**/*.odf</entry>
 								<entry>**/*.mm</entry>
+								<entry>**/*.dia</entry>
 								<entry>**/*.log</entry>
 								<!-- // ServiceLoader files -->
 								<entry>**/META-INF/services/**</entry>
