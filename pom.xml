@@ -78,6 +78,7 @@
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 		<!-- see maven-release-plugin -->
+		<releaseProfiles>release</releaseProfiles>
 		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
 		<releasePrepareGoals>clean verify</releasePrepareGoals>
 		<releasePerformGoals>deploy</releasePerformGoals>
@@ -464,6 +465,7 @@
 						<preparationGoals>${releasePrepareGoals}</preparationGoals>
 						<!-- invocataion: release:perform -->
 						<goals>${releasePerformGoals}</goals>
+						<releaseProfiles>${releaseProfiles}</releaseProfiles>
 						<!-- nested invocation arguments for both release:prepare and release:perform -->
 						<arguments>${releaseNestedArguments}</arguments>
 					</configuration>
@@ -544,11 +546,6 @@
 		<!-- activated by maven-release-plugin -->
 		<profile>
 			<id>release</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-				</property>
-			</activation>
 			<build>
 				<plugins>
 					<plugin>
