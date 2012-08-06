@@ -80,8 +80,8 @@
 		<!-- see maven-release-plugin -->
 		<releaseProfiles>release</releaseProfiles>
 		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
-		<releasePrepareGoals>validate clean verify</releasePrepareGoals>
-		<releasePerformGoals>validate deploy</releasePerformGoals>
+		<releasePrepareGoals>clean verify</releasePrepareGoals>
+		<releasePerformGoals>deploy</releasePerformGoals>
 
 	</properties>
 
