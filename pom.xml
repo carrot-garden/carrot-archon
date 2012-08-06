@@ -79,7 +79,9 @@
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 		<!-- see maven-release-plugin -->
-		<releaseArguments>--define resume=false</releaseArguments>
+		<releaseNestedArguments>--define resume=false</releaseNestedArguments>
+		<releasePrepareGoals>validate clean verify</releasePrepareGoals>
+		<releasePerformGoals>deploy</releasePerformGoals>
 
 	</properties>
 
@@ -460,11 +462,11 @@
 					<version>2.3.2</version>
 					<configuration>
 						<!-- invocataion: release:prepare -->
-						<preparationGoals>validate clean verify</preparationGoals>
+						<preparationGoals>${releasePrepareGoals}</preparationGoals>
 						<!-- invocataion: release:perform -->
-						<goals>validate deploy</goals>
+						<goals>${releasePerformGoals}</goals>
 						<!-- nested invocation arguments for both release:prepare and release:perform -->
-						<arguments>${releaseArguments}</arguments>
+						<arguments>${releaseNestedArguments}</arguments>
 					</configuration>
 				</plugin>
 
