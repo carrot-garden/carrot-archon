@@ -79,7 +79,7 @@
 
 		<!-- see maven-release-plugin -->
 		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
-		<releasePrepareGoals>validate clean verify</releasePrepareGoals>
+		<releasePrepareGoals>clean verify</releasePrepareGoals>
 		<releasePerformGoals>deploy</releasePerformGoals>
 
 	</properties>
