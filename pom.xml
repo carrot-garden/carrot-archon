@@ -78,7 +78,7 @@
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 		<!-- see maven-release-plugin -->
-		<releaseNestedArguments>--define resume=false</releaseNestedArguments>
+		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
 		<releasePrepareGoals>validate clean verify</releasePrepareGoals>
 		<releasePerformGoals>deploy</releasePerformGoals>
 
