@@ -8,5 +8,5 @@
 
 -->
 # maven marker file
-when this file is present in project root,
-artifacts will be published to maven central.
+when this file is present in the project root,
+artifacts will be published to the maven central.
