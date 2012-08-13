@@ -891,6 +891,7 @@
 								<scala>JAVADOC_STYLE</scala>
 								<gitignore>SCRIPT_STYLE</gitignore>
 								<conf>SCRIPT_STYLE</conf>
+								<cfg>SCRIPT_STYLE</cfg>
 								<properties>SCRIPT_STYLE</properties>
 								<!-- default -->
 								<java>JAVADOC_STYLE</java>
