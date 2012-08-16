@@ -419,25 +419,11 @@
 						</jvmArgs>
 					</configuration>
 					<executions>
+						<!-- compile java first, scala second -->
 						<execution>
-							<id>scala-sourcess</id>
-							<phase>validate</phase>
-							<goals>
-								<goal>add-source</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>scala-compile</id>
-							<phase>process-resources</phase>
 							<goals>
 								<goal>add-source</goal>
 								<goal>compile</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>scala-test-compile</id>
-							<phase>process-test-resources</phase>
-							<goals>
 								<goal>testCompile</goal>
 							</goals>
 						</execution>
