@@ -21,9 +21,11 @@
 		</condition>
 
 		<exec executable="${executable}">
-			
+
+			<arg value="versions:display-plugin-updates" />
+
 			<arg value="versions:display-dependency-updates" />
-			
+
 		</exec>
 		
 	</target>

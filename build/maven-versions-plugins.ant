@@ -25,6 +25,7 @@
 			<arg value="versions:display-plugin-updates" />
 			
 		</exec>
+		
 	</target>
 
 </project>
