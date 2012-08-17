@@ -78,7 +78,7 @@
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 		<!-- see maven-release-plugin -->
-		<releaseProfiles>release</releaseProfiles>
+		<releaseProfiles>release-perform</releaseProfiles>
 		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
 		<releasePrepareGoals>clean verify</releasePrepareGoals>
 		<releasePerformGoals>deploy</releasePerformGoals>
@@ -628,17 +628,9 @@
 
 	<profiles>
 
-		<!-- some plugins need at least one active profile -->
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-
 		<!-- activated by maven-release-plugin -->
 		<profile>
-			<id>release</id>
+			<id>release-perform</id>
 			<build>
 				<plugins>
 					<plugin>
