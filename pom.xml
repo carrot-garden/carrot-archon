@@ -1,7 +1,9 @@
 <!-- Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com> 
 	All rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<!-- http://maven.apache.org/ref/3.0.4/maven-model-builder/super-pom.html -->
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.carrotgarden.base</groupId>
@@ -78,7 +80,7 @@
 		<sonatypeSnapshotsURL>https://oss.sonatype.org/content/repositories/snapshots</sonatypeSnapshotsURL>
 
 		<!-- see maven-release-plugin -->
-		<releaseProfiles>release-perform</releaseProfiles>
+		<releaseProfiles></releaseProfiles>
 		<releaseNestedArguments>-Dresume=false</releaseNestedArguments>
 		<releasePrepareGoals>clean verify</releasePrepareGoals>
 		<releasePerformGoals>deploy</releasePerformGoals>
@@ -510,13 +512,18 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.3.2</version>
 					<configuration>
+
 						<!-- invocataion: release:prepare -->
 						<preparationGoals>${releasePrepareGoals}</preparationGoals>
+
 						<!-- invocataion: release:perform -->
+						<useReleaseProfile>true</useReleaseProfile>
 						<goals>${releasePerformGoals}</goals>
 						<releaseProfiles>${releaseProfiles}</releaseProfiles>
+
 						<!-- nested invocation arguments for both release:prepare and release:perform -->
 						<arguments>${releaseNestedArguments}</arguments>
+
 					</configuration>
 				</plugin>
 
@@ -630,7 +637,7 @@
 
 		<!-- activated by maven-release-plugin -->
 		<profile>
-			<id>release-perform</id>
+			<id>release-profile</id>
 			<build>
 				<plugins>
 					<plugin>
