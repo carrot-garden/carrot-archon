@@ -956,7 +956,7 @@
 							<useDefaultMapping>false</useDefaultMapping>
 							<useDefaultExcludes>false</useDefaultExcludes>
 							<mapping>
-								<!-- carrot -->
+								<!-- custom -->
 								<md>XML_STYLE</md>
 								<ant>XML_STYLE</ant>
 								<scala>JAVADOC_STYLE</scala>
@@ -993,7 +993,7 @@
 								<entry>**</entry>
 							</includes>
 							<excludes>
-								<!-- carrot -->
+								<!-- custom -->
 								<entry>**/${licenseSource}/**</entry>
 								<entry>**/*.template</entry>
 								<entry>**/*.json</entry>
