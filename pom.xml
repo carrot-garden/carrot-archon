@@ -644,6 +644,11 @@
 		<!-- activated by maven-release-plugin -->
 		<profile>
 			<id>release-profile</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
