@@ -19,13 +19,13 @@
 	</parent>
 
 	<artifactId>carrot-archon-tester-sonatype</artifactId>
-	<version>1.4.0-build001</version>
+	<version>1.4.0-build002-SNAPSHOT</version>
 
 	<scm>
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
-    <tag>carrot-archon-tester-sonatype-1.4.0-build001</tag>
+    <tag>HEAD</tag>
   </scm>
 
 	<repositories>
