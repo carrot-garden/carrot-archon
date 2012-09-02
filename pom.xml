@@ -575,11 +575,13 @@
 					<version>2.3.2</version>
 					<configuration>
 
+						<!-- see super-pom.xml -->
+
 						<!-- invocataion: release:prepare -->
 						<preparationGoals>${releasePrepareGoals}</preparationGoals>
 
 						<!-- invocataion: release:perform -->
-						<useReleaseProfile>true</useReleaseProfile>
+						<useReleaseProfile>false</useReleaseProfile>
 						<goals>${releasePerformGoals}</goals>
 						<releaseProfiles>${releaseProfiles}</releaseProfiles>
 
@@ -697,9 +699,15 @@
 
 	<profiles>
 
-		<!-- activated by maven-release-plugin -->
+		<!-- activated by maven-release-plugin; also see super-pom.xml -->
 		<profile>
 			<id>release-profile</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
