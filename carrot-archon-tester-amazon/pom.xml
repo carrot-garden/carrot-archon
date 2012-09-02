@@ -12,14 +12,14 @@
 	</parent>
 
 	<artifactId>carrot-archon-tester-amazon</artifactId>
-	<version>1.4.0-build000</version>
+	<version>1.4.0-build001-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<scm>
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
-		<tag>carrot-archon-tester-amazon-1.4.0-build000</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<repositories>
