@@ -574,7 +574,7 @@
 						<preparationGoals>${releasePrepareGoals}</preparationGoals>
 
 						<!-- invocataion: release:perform -->
-						<useReleaseProfile>false</useReleaseProfile>
+						<useReleaseProfile>true</useReleaseProfile>
 						<goals>${releasePerformGoals}</goals>
 						<releaseProfiles>${releaseProfiles}</releaseProfiles>
 
