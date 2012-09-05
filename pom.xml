@@ -7,7 +7,7 @@
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
-	<version>1.4.2-SNAPSHOT</version>
+	<version>1.4.2</version>
 	<packaging>pom</packaging>
 
 	<url>http://www.carrotgarden.com/</url>
@@ -54,7 +54,7 @@
 		<url>https://github.com/carrot-garden/carrot-archon</url>
 		<connection>scm:git:git://github.com/carrot-garden/carrot-archon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-archon.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>carrot-archon-1.4.2</tag>
 	</scm>
 
 	<properties>
