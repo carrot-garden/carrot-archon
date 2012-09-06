@@ -1,6 +1,7 @@
 <!-- Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com> 
 	All rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<!-- http://maven.apache.org/ref/3.0.4/maven-model-builder/super-pom.html -->
 	<modelVersion>4.0.0</modelVersion>
@@ -207,6 +208,37 @@
 		<pluginManagement>
 
 			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<version>1.7</version>
+					<configuration>
+						<debug>false</debug>
+						<ignoreFailures>false</ignoreFailures>
+						<projectsDirectory>src/int</projectsDirectory>
+						<cloneProjectsTo>target/int-work</cloneProjectsTo>
+						<invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
+						<pomIncludes>
+							<include>archon/pom.xml</include>
+						</pomIncludes>
+						<goals>
+							<!-- goals for child maven invocation -->
+							<goal>clean</goal>
+							<goal>install</goal>
+						</goals>
+					</configuration>
+					<executions>
+						<execution>
+							<id>integration-test</id>
+							<goals>
+								<!-- goals for parent maven invocation -->
+								<goal>install</goal>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 
 				<plugin>
 					<groupId>org.apache.servicemix.tooling</groupId>
