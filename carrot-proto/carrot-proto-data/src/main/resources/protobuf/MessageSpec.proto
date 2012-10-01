@@ -1,0 +1,45 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for messages
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.data";
+option java_outer_classname = "MessageSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// message fields
+import "FieldSpec.proto";
+
+// market data message
+message MarketMessage {
+//
+	enum Type {
+		UPDATE = 0;
+		SNAPSHOT = 1;
+	}
+
+	//
+	optional Type type = 1;
+	//
+	optional sint64 marketId = 2; // market guid; base for entries
+	optional sint64 sequence = 3; // market sequence number; base for entries
+	optional sint64 timeStamp = 4; // market time stamp, millisUTC; base for entries
+	//
+	repeated MarketEntry entry = 5; // list of entries
+	//
+	optional sint32 priceExponent = 6; // base for entries
+	optional sint32 sizeExponent = 7; // base for entries
+	//
+	optional sint32 tradeDate = 8; // base for entries; date in "fix format" 2012-07-04 -> 20120704
+	//
+}
+

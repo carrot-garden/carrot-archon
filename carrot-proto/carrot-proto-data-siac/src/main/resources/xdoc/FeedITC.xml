@@ -1,0 +1,219 @@
+
+<protocol>
+
+	<config info="protocol for ICE feed">
+		<main class="com.carrotgarden.proto.data.ice.ICE" />
+		<codec class="com.carrotgarden.proto.data.ice.CodecICE" />
+		<converter class="com.carrotgarden.proto.data.ice.ConverterICE" />
+	</config>
+
+	<record name="Packet">
+
+		<field name="head" type="PacketHead" />
+
+		<field name="messageList" type="Message" list="true"
+			counter="head.messageCount()" />
+
+		<convert type="MarketPacket.Builder" name="packet">
+			<into>
+				<visit name="packet" />
+			</into>
+		</convert>
+
+	</record>
+
+	<record name="PacketHead" size="16">
+
+		<field name="session" type="int" codec="number" size="2"
+			info="Length of the packet including the 16-byte packet header." />
+
+		<field name="sequence" type="long" codec="number" size="4"
+			info="This field contains the packet sequence number. It is unique for each
+			broadcast channel (multicast group) and is used for gap detection. It
+			increases serially and monotonically and is reset to 1 at the beginning of
+			each trading day." />
+
+		<field name="messageCount" type="int" codec="number" size="2"
+			info="" />
+
+		<field name="timeStamp" type="long" codec="number" size="8"
+			info="Time in milliseconds indicating the packet broadcast time. The number
+			represents the number of milliseconds since the previous Sunday 00:00 UTC." />
+
+		<convert type="MarketPacket.Builder" name="packet">
+			<into>
+				packet.setSequence(sequence);
+				packet.setTimeStamp(converter.timeStamp(timeStamp));
+			</into>
+		</convert>
+
+	</record>
+
+	<record name="Message">
+
+		<field name="type" type="int" codec="string" size="1" enum="MessageType"
+			info="" />
+
+		<field name="length" type="int" codec="number" size="2" info="" />
+
+		<field name="marketId" type="long" codec="number" size="4" info="" />
+
+		<field name="body" type="Body" code="Integer.toString(type)" />
+
+		<convert type="MarketPacket.Builder" name="packet">
+			<into>
+
+				Long targetId = converter.targetId(marketId);
+
+				if(targetId==null){return;}
+
+				MarketMessage.Builder
+				message=MarketMessage.newBuilder();
+
+				message.setMarketId(targetId);
+
+				<visit name="message" />
+
+				if(message.getEntryList().isEmpty()){return;}
+
+				packet.addMessage(message);
+
+			</into>
+		</convert>
+
+	</record>
+
+	<enum name="MessageType" codec="number" size="2"
+		info="Numeric message type identifier">
+
+		<value name="Market_Update_701" code="701" info="Market Update v1" />
+
+		<value name="UNKNOWN" code="-1" info="default value for error condition" />
+
+	</enum>
+
+	<union name="Body" info="body polymorph">
+
+		<option name="MU_701" type="BodyMarketUpdate701" code="701" />
+
+		<convert type="MarketMessage.Builder" name="message">
+			<into>
+				<visit name="message" />
+			</into>
+		</convert>
+
+	</union>
+
+	<record name="BodyMarketUpdate701">
+
+		<field name="sequence" type="long" codec="number" size="4"
+			info="Sequence number for the message, monotonically increasing 
+			and unique for each series. 1 – 4,294,967,294" />
+
+		<field name="marketId" type="MarketID"
+			info="combination of sourceID and secruityID" />
+
+		<field name="snapshotFlag" type="byte" codec="number" size="1"
+			enum="SnapshotFlag"
+			info="SnapshotFlag - Indicates whether the price updates in the
+			message are snapshots." />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" info="ignore" />
+
+		<field name="entryCount" type="int" codec="number" size="2"
+			info="Number of updates. Indicates number of times the following group of
+			three fields (Update Type, Price and Volume) will be repeated in the message." />
+
+		<field name="entryList" type="DataEntry" list="true" counter="entryCount" />
+
+		<convert type="MarketMessage.Builder" name="message">
+			<into>
+
+				message.setSequence(sequence);
+				message.setType(converter.dataType(snapshotFlagEnum()));
+
+				<visit name="message" />
+
+			</into>
+		</convert>
+
+	</record>
+
+	<record name="MarketID" size="16">
+
+		<field name="sourceId" type="byte" codec="number" size="1"
+			info="Binary Type of the security code Integer ‘8’ - AMR" />
+
+		<field name="securityId" type="String" codec="string" size="15"
+			info="Security code (source of code indicated by SecurityIDSource field)
+ 			ASCII String If SecurityIDSource = 8 then this field will contain the AMR code." />
+
+		<convert type="MarketMessage.Builder" name="message">
+			<into>
+
+				Long targetId
+				=converter.targetId(sourceId,securityId);
+
+				if(targetId==null){return;}
+
+				message.setMarketId(targetId);
+
+			</into>
+		</convert>
+
+	</record>
+
+	<record name="DataEntry" info="">
+
+		<field name="type" type="int" codec="number" size="2" enum="UpdateType"
+			info="Type of update" />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" info="" />
+
+		<field name="price" type="int" codec="number" size="4" info="" />
+		<field name="size" type="int" codec="number" size="4" info="" />
+
+		<convert type="MarketMessage.Builder" name="message">
+			<into>
+
+				if(!message.hasMarketId()){return;}
+
+				if(!converter.isKnown(type)){return;}
+
+				MarketEntry.Builder
+				entry=MarketEntry.newBuilder();
+
+				converter.applyType(type,message,entry);
+
+				converter.applyPrice(price,message,entry);
+				converter.applySize(size,message,entry);
+
+				message.addEntry(entry);
+
+			</into>
+		</convert>
+
+	</record>
+
+	<enum name="SnapshotFlag" codec="number"
+		info="Indicates whether the price updates in the message are snapshots.">
+
+		<value name="UPDATE" code="0" info="0 - Real-time event/update" />
+		<value name="SNAPSHOT" code="1" info="1 - Snapshot" />
+
+		<value name="UNKNOWN" code="-1" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="UpdateType" codec="number" info="Type of update">
+
+		<value name="BID_TOP" code="1" info="‘1’ - Best Bid" />
+		<value name="ASK_TOP" code="2" info="‘2’ - Best Offer" />
+		<value name="BID_NORMAL" code="3" info="‘3’ - Bid" />
+		<value name="ASK_NORMAL" code="4" info="‘4’ - Offer" />
+
+		<value name="UNKNOWN" code="-1" info="default value for error condition" />
+
+	</enum>
+
+</protocol>

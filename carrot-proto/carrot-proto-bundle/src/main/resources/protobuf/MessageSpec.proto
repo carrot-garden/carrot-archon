@@ -1,0 +1,246 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for messages
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.feed";
+option java_outer_classname = "MessageSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// message options descriptor
+import "google/protobuf/descriptor.proto";
+
+// message fields
+import "FieldSpec.proto";
+
+// define static message fields for meta data
+extend google.protobuf.MessageOptions {
+	optional string optionEnumNameSuffix = 50001; // message type enum name suffix
+	optional string optionExtensionPrefix = 50002; // message extension name prefix
+}
+
+// message type
+// note: order by most frequent first
+// note: must use suffix due to global scope
+enum MessageType {
+//
+	MarketDataType = 10;
+	MarketNewsType = 70;
+	//
+	DataSubscribeRequestType = 100;
+	DataSubscribeResponseType = 101;
+	//
+	NewsSubscribeRequestType = 102;
+	NewsSubscribeResponseType = 103;
+	//
+	InstrumentRequestType = 104;
+	InstrumentResponseType = 105;
+	//
+	LoginRequestType = 106;
+	LoginResponseType = 107;
+	//
+	HeartBeatType = 127;
+	//
+	// keep under 128
+}
+
+// forward declaration of sub types / extensions
+// note: must use prefix due to global scope
+// note: keep in sync with message type enum
+// note: index must be inside base extensions range
+extend Base {
+//
+	optional MarketData messageMarketData = 10; // should be repeated?
+	optional MarketNews messageMarketNews = 70; // should be repeated?
+	//
+	optional DataSubscribeRequest messageDataSubscribeRequest = 100;
+	optional DataSubscribeResponse messageDataSubscribeResponse = 101;
+	//
+	optional NewsSubscribeRequest messageNewsSubscribeRequest = 102;
+	optional NewsSubscribeResponse messageNewsSubscribeResponse = 103;
+	//
+	optional InstrumentRequest messageInstrumentRequest = 104;
+	optional InstrumentResponse messageInstrumentResponse = 105;
+	//
+	optional LoginRequest messageLoginRequest = 106;
+	optional LoginResponse messageLoginResponse = 107;
+	//
+	optional HeartBeat messageHeartBeat = 127;
+	//
+	// keep under 128
+}
+
+// message base for extensions / sub types; represents a packet : header + body
+// note: field number 1..15 is 1 byte tag, 16..127 is 2 byte tag
+message Base {
+	option (optionEnumNameSuffix) = "Type"; // msg type enum names must use suffix
+	option (optionExtensionPrefix) = "message"; // msg extension names must use prefix
+	//
+	optional sint32 channel = 1; // message channel number
+	optional sint64 sequence = 2; // message sequence number inside the channel
+	optional sint64 timeStamp = 3; // message time stamp, millisUTC
+	//
+	optional MessageType type = 4; // sub type selector
+	//
+	//	optional Field name = 5;
+	//	...
+	//	optional Field name = 9;
+	//
+	extensions 10 to 15; // sub type index range for frequent messages
+	//
+	//	optional Field name = 16;
+	//	...
+	//	optional Field name = 63;
+	//
+	extensions 64 to 127; // sub type index range for infrequent messages
+	//
+	// keep under 128
+}
+
+// ##################################################
+
+// one and only market data state change message
+message MarketData {
+//
+	enum Type {
+		UPDATE = 0;
+		SNAPSHOT = 1;
+		//		RESET_ALL = 2;
+		//		RESET_BOOK = 3;
+		//		RESET_CUVOL = 4;
+	}
+
+	//
+	optional Type type = 1;
+	//
+	optional sint64 marketId = 2; // market guid; base for entries
+	optional sint64 sequence = 3; // market sequence number; base for entries
+	optional sint64 timeStamp = 4; // market time stamp, millisUTC; base for entries
+	//
+	repeated MarketDataEntry entry = 5; // list of entries
+	//
+	optional sint32 priceExponent = 6; // base for entries
+	optional sint32 sizeExponent = 7; // base for entries
+	//
+	optional sint32 tradeDate = 8; // base for entries; date in "fix format" 2012-07-04 -> 20120704
+	//
+}
+
+// ##################################################
+
+//
+message MarketNews {
+	enum Type {
+		MARKET_UPDATE = 0;
+		BREAKING_NEWS = 1;
+	}
+
+	optional Type type = 1;
+	optional sint64 marketId = 2;
+	repeated MarketNewsEntry entry = 3;
+}
+
+// ##################################################
+
+// login from client to server
+message LoginRequest {
+	optional string username = 1;
+	optional string password = 2;
+}
+
+// response from server to client
+message LoginResponse {
+	enum Status {
+		SUCCESS = 1;
+		FAILURE = 2;
+	}
+
+	optional Status status = 1;
+	optional string comment = 2;
+}
+
+// ##################################################
+
+//
+message InstrumentRequest {
+	optional sint64 marketId = 1;
+}
+
+//
+message InstrumentResponse {
+	optional sint64 marketId = 1;
+	// representation version
+	optional sint32 instrumentSchemaId = 2; //
+	// 	complete json object or embedded proto.buf for instrument, etc
+	optional bytes instrumentDescriptor = 3; //
+}
+
+// ##################################################
+
+//
+message DataSubscribeRequest {
+	enum Type {
+		UPDATE = 0;
+		SNAPSHOT = 1;
+	}
+
+	repeated Type type = 1; // empty means none
+	optional sint64 marketId = 2;
+}
+
+//
+message DataSubscribeResponse {
+	enum Type {
+		SUCCESS = 0;
+		NOT_AVAILABLE = 1;
+		NOT_AUTHORIZED = 2;
+	}
+
+	optional Type type = 1;
+	optional sint64 marketId = 2;
+	optional string comment = 3;
+}
+
+// ##################################################
+
+//
+message NewsSubscribeRequest {
+	enum Type {
+		NONE = 0;
+		UPDATE = 1;
+		SNAPSHOT = 2;
+	}
+
+	repeated Type type = 1;
+	optional sint64 marketId = 2;
+}
+
+message NewsSubscribeResponse {
+	enum Type {
+		SUCCESS = 0;
+		NOT_AVAILABLE = 1;
+		NOT_AUTHORIZED = 2;
+	}
+
+	optional Type type = 1;
+	optional sint64 marketId = 2;
+	optional string comment = 3;
+}
+
+// ##################################################
+
+// bidirectional keep alive
+message HeartBeat {
+	optional sint64 interval = 1;
+}
+
+// ##################################################

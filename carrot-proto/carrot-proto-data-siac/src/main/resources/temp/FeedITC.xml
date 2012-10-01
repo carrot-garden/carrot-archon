@@ -1,0 +1,47 @@
+<protocol info="protocol for ITC feed" java_package="com.carrotgarden.proto.data.siac"
+	java_class_name="ITC" java_codec_helper="com.carrotgarden.proto.data.itc.CodecHelperITC">
+
+	<record name="Packet">
+	</record>
+
+	<record name="Header">
+
+		<field name="separator1" type="byte" codec="skip" size="1" />
+
+		<field name="exchangeId_1" type="String" codec="string" size="2" />
+
+		<!-- <field name="exchangeId_2" type="E.ExchangeID" /> -->
+
+		<field name="vendorId" type="String" codec="string" size="2" />
+
+		<field name="productId" type="String" codec="string" size="1" />
+
+		<field name="category" type="String" codec="string" size="1" />
+
+		<field name="type" type="String" codec="string" size="1" />
+
+		<field name="day" type="String" codec="string" size="1" />
+
+		<field name="sequence" type="int" codec="number" size="7" />
+
+		<field name="timestamp" type="int" codec="number" size="7" />
+
+		<field name="session" type="String" codec="string" size="1" />
+
+		<field name="separator2" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<enum name="ExchangeID" codec="string" size="2" type="byte">
+
+		<value name="UNKNOWN" code="\u0000" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="VendorID" codec="string" size="2">
+
+		<value name="UNKNOWN" code="\u0000" info="default value for error condition" />
+
+	</enum>
+
+</protocol>

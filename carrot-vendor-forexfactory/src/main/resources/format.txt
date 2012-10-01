@@ -1,0 +1,24 @@
+11:36:11.107 [main] INFO  c.c.forexfactroy.MainFetch - ##############################
+11:36:11.107 [main] INFO  c.c.forexfactroy.MainFetch - Found row
+11:36:11.107 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.110 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: 6:00 @ 0
+11:36:11.110 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.112 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: EUR @ 1
+11:36:11.112 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.113 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell:  @ 2
+11:36:11.113 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.116 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: German Import Prices m/m @ 3
+11:36:11.116 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.119 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell:  @ 4
+11:36:11.119 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.123 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: 1.0% @ 5
+11:36:11.123 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.125 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: 0.9% @ 6
+11:36:11.125 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.126 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell: 1.3% @ 7
+11:36:11.126 [main] INFO  c.c.forexfactroy.MainFetch -    ##############################
+11:36:11.129 [main] INFO  c.c.forexfactroy.MainFetch -    Found cell:  @ 8
+11:36:11.129 [main] INFO  c.c.forexfactroy.MainFetch - ##############################
+
+
+12:18:42.706 [main] INFO  c.c.forexfactroy.MainFetch -  result = {time=6:00, impact=HtmlDivision[<div class="cal_imp_low" title="Low Impact Expected">], currency=EUR}

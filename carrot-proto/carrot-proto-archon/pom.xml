@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.2.1</version>
+	</parent>
+
+	<groupId>com.carrotgarden.proto</groupId>
+	<artifactId>carrot-proto-archon</artifactId>
+	<version>1.0.2-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<scm>
+		<url>https://github.com/carrot-garden/carrot-project</url>
+		<connection>scm:git:git://github.com/carrot-garden/carrot-project.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-project.git</developerConnection>
+	  <tag>HEAD</tag>
+  </scm>
+
+	<properties>
+
+		<carrotProtobufVersion>2.4.1</carrotProtobufVersion>
+
+	</properties>
+
+	<dependencies>
+
+		<!-- protocol buffers -->
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>${carrotProtobufVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- generate java source from proto files -->
+			<plugin>
+				<groupId>com.github.igor-petruk.protobuf</groupId>
+				<artifactId>protobuf-maven-plugin</artifactId>
+				<version>0.5.1</version>
+				<executions>
+					<execution>
+						<id>protocol-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<ignoreVersions>false</ignoreVersions>
+							<inputDirectories>
+								<entry>src/main/resources/protobuf</entry>
+							</inputDirectories>
+							<outputDirectory>target/main/protobuf</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>protocol-test-sources</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<ignoreVersions>false</ignoreVersions>
+							<inputDirectories>
+								<entry>src/test/resources/protobuf</entry>
+							</inputDirectories>
+							<outputDirectory>target/test/protobuf</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- make generated java files available for build -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>protocol-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/main/protobuf</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>protocol-test-sources</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/test/protobuf</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

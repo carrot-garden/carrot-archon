@@ -1,0 +1,161 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for message fields
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.data";
+option java_outer_classname = "FieldSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// universal data entry field
+message MarketEntry {
+//
+// primary entry category; single
+// keep most frequent first
+	enum Type {
+	//
+		TRADE = 0; // a.k.a last sale; price & size (size mostly present)
+		//
+		BID = 1; // book side
+		ASK = 2; // book side
+		//
+		CHANGE = 3; // such as price change from previous day
+		//
+		UNDERLYING = 4; // such as option/spread underlying price
+		//
+		GAP = 5; // book middle
+		//
+		PERCENT = 5; // some kind of interest rate or ratio, etc
+		//
+		VOLUME = 5;
+		//
+		OPEN = 6;
+		HIGH = 7;
+		LOW = 8;
+		CLOSE = 9; // a.k.a last sale, before close; price; (size mostly absent)
+		//
+		SETTLE = 10;
+		//
+		INTEREST = 11;
+		//
+		CUVOL = 12; // cumulative volume
+		//
+		STATUS = 13; // non price/size change; such as OPEN/CLOSE event
+		//
+		SEQUENCE = 14; //such as snapshot & update sequence synchronization index
+		//
+		BOOK_RESET = 15;
+		//
+		// keep under 128
+		//
+		UNKNOWN_TYPE = 32767;
+		//
+	}
+	//
+	// secondary entry category; multiple; entry annotation;
+	// keep in name space like format
+	enum Descriptor {
+	//
+		BOOK_IMPLIED = 0; // ICE, CME
+		BOOK_RFQ = 1; // ICE
+		//
+		SETTLE_UNOFFICIAL = 2; // ICE
+		SETTLE_PRELIMINARY = 3; // CME
+		SETTLE_THEORETICAL = 4; // CME
+		SETTLE_LOW = 4; //
+		SETTLE_HIGH = 4; //
+		SETTLE_PREVIOUS = 4; //
+		SETTLE_AUCTION = 4; //
+		//
+		PERIOD_SESSION = 10;
+		PERIOD_DAY = 10;
+		PERIOD_WEEK = 11;
+		PERIOD_MONTH = 12;
+		PERIOD_YEAR = 13;
+		//
+		// such as FORM-T
+		SESSION_OVERNIGHT = 50; //
+		//
+		STATUS_MARKET_OPEN = 100; // OPRA, ICE
+		STATUS_MARKET_CLOSE = 101; // OPRA, ICE
+		STATUS_MARKET_PRE_OPEN = 102; // OPRA, ICE
+		STATUS_MARKET_PRE_CLOSE = 103; // OPRA, ICE
+		//
+		STATUS_TRADING_PAUSE = 104;
+		STATUS_TRADING_RESUME = 105;
+		//
+		SIDE_FIRM = 110; // OPRA
+		SIDE_CUSTOMER = 111; // OPRA
+		//
+		INDEX_VALUE = 112; //
+		//
+		INDEX_ON_TRADE = 112; // OPRA
+		INDEX_ON_BOOK = 113; // OPRA
+		//
+		VOLUME_BLOCK = 120; // ICE
+		VOLUME_EFS = 121; // ICE
+		VOLUME_EFP = 122; // ICE
+		//
+		PRICE_IMBALANCE = 123; //
+		PRICE_VWAP = 123; // ICE
+		PRICE_SYSTEM = 124; // ICE IsSystemPricedLeg
+		//
+		PRICE_SIMULATED = 124; //
+		//
+		TRADE_BLOCK = 125; // ICE
+		//
+		TRADE_CANCELED = 126; // ICE
+		TRADE_INVESTIGATED = 127; // ICE
+		//
+		PERCENT_MARGIN_RATE = 127; // ICE
+		//
+		// keep under 128
+		//
+		UNKNOWN_DESCRIPTOR = 32767;
+		//
+	}
+	//
+	// entry action
+	enum Action {
+		ADD = 0; // new, create, insert
+		EDIT = 1; // merge, modify, replace, override, overlay
+		REMOVE = 2; // delete, erase, clear, reset
+		//
+		// keep under 128
+		//
+		UNKNOWN_ACTION = 32767;
+		//
+	}
+	//
+	optional Type type = 1; // primary category
+	optional Action action = 2; // entry action
+	repeated Descriptor descriptor = 3 [packed = true]; // list of secondary category descriptors
+	//
+	optional sint64 marketId = 4; // override to base;
+	optional sint64 sequence = 5; // offset to base; market-local sequence number
+	optional sint64 timeStamp = 6; // offset to base; millisUTC
+	//
+	optional sint64 priceMantissa = 7;
+	optional sint32 priceExponent = 8; // override to base;
+	//
+	optional sint64 sizeMantissa = 9;
+	optional sint32 sizeExponent = 10; // override to base;
+	//
+	// such as book level, cuvol position, snpashot & update sequence, etc
+	optional sint64 index = 11;
+	//
+	// date in "fix format" 2012-07-04 -> 20120704
+	optional sint32 tradeDate = 12; // offset to base;
+	//
+	optional sint64 orderId = 13; // XXX
+	//
+}

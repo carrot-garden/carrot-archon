@@ -1,0 +1,184 @@
+<!-- Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com> 
+	All rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.2.1</version>
+	</parent>
+
+	<groupId>com.carrotgarden.proto</groupId>
+	<artifactId>carrot-proto-data-siac</artifactId>
+	<version>1.0.2-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+
+	<properties>
+
+		<carrotJavaVersion>1.6</carrotJavaVersion>
+
+		<protoMainTarget>target/main/xresult</protoMainTarget>
+		<protoTestTarget>target/test/xresult</protoTestTarget>
+
+	</properties>
+
+	<dependencies>
+
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotgarden.proto</groupId>
+			<artifactId>carrot-proto-data</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>2.4.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xml-maven-plugin</artifactId>
+				<version>1.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>net.sourceforge.saxon</groupId>
+						<artifactId>saxon</artifactId>
+						<version>9.1.0.8</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<transformationSets>
+						<transformationSet>
+							<parameters>
+								<parameter>
+									<name>java_target</name>
+									<value>${protoMainTarget}</value>
+								</parameter>
+							</parameters>
+							<dir>src/main/resources/xdoc</dir>
+							<stylesheet>src/main/resources/xform/protocol.xsl</stylesheet>
+						</transformationSet>
+					</transformationSets>
+				</configuration>
+				<executions>
+					<execution>
+						<id>gen-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>transform</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+				<artifactId>maven-java-formatter-plugin</artifactId>
+				<version>0.3.1</version>
+				<configuration>
+					<sourceDirectory>${protoMainTarget}</sourceDirectory>
+					<compilerSource>${carrotJavaVersion}</compilerSource>
+					<compilerCompliance>${carrotJavaVersion}</compilerCompliance>
+					<compilerTargetPlatform>${carrotJavaVersion}</compilerTargetPlatform>
+				</configuration>
+				<executions>
+					<execution>
+						<id>format-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${protoMainTarget}</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>xml-maven-plugin</artifactId>
+										<versionRange>[0,)
+										</versionRange>
+										<goals>
+											<goal>transform</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+										<artifactId>maven-java-formatter-plugin</artifactId>
+										<versionRange>[0,)</versionRange>
+										<goals>
+											<goal>format</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+	</build>
+
+</project>

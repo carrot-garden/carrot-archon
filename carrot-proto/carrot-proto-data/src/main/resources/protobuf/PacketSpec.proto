@@ -1,0 +1,33 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for messages
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.data";
+option java_outer_classname = "PacketSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+//
+import "MessageSpec.proto";
+
+//
+message MarketPacket {
+//
+
+	//
+	optional sint64 sequence = 3; // market sequence number; base for entries
+	optional sint64 timeStamp = 4; // market time stamp, millisUTC; base for entries
+	//
+	repeated MarketMessage message = 5; // list of entries
+	//
+}
+

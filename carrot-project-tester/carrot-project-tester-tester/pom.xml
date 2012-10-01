@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.2.1</version>
+	</parent>
+
+	<groupId>com.carrotgarden.test</groupId>
+	<artifactId>carrot-project-tester-tester</artifactId>
+	<version>1.0.26-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+
+	<scm>
+		<url>https://github.com/carrot-garden/carrot-project</url>
+		<connection>scm:git:git://github.com/carrot-garden/carrot-project.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-project.git</developerConnection>
+	  <tag>HEAD</tag>
+  </scm>
+
+	<properties>
+
+		<carrotJavaVersion>1.7</carrotJavaVersion>
+
+	</properties>
+
+</project>

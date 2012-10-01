@@ -1,0 +1,16 @@
+<protocol info="protocol for ITC feed" java_package="com.carrotgarden.proto.data.siac"
+	java_class_name="E" java_codec_helper="com.carrotgarden.proto.data.itc.CodecHelperITC">
+
+	<enum name="ExchangeID" codec="string" size="2">
+
+		<value name="UNKNOWN" code="\u0000" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="VendorID" codec="string" size="2">
+
+		<value name="UNKNOWN" code="\u0000" info="default value for error condition" />
+
+	</enum>
+
+</protocol>

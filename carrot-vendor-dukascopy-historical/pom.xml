@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.2.0</version>
+	</parent>
+
+	<groupId>com.carrotgarden.trader</groupId>
+	<artifactId>carrot-vendor-dukascopy-historical</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+
+	<properties>
+		<carrotJavaVersion>1.6</carrotJavaVersion>
+		<carrotScalaVersion>2.9.1</carrotScalaVersion>
+	</properties>
+
+	<repositories>
+
+		<repository>
+			<id>dukascopy_public</id>
+			<name>dukascopy public repository</name>
+			<url>http://www.dukascopy.com/client/jforexlib/publicrepo/</url>
+		</repository>
+
+		<repository>
+			<id>typesafe</id>
+			<name>Typesafe Repository</name>
+			<url>http://repo.typesafe.com/typesafe/releases/</url>
+		</repository>
+
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.dukascopy.dds2</groupId>
+			<artifactId>DDS2-jClient-JForex</artifactId>
+			<version>2.16</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.joda</groupId>
+			<artifactId>joda-convert</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.liftweb</groupId>
+			<artifactId>lift-json_2.9.1</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>net.liftweb</groupId>
+			<artifactId>lift-json-ext_2.9.1</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.weiglewilczek.slf4s</groupId>
+			<artifactId>slf4s_2.9.1</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2-beta1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotgarden.util</groupId>
+			<artifactId>carrot-util-values</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

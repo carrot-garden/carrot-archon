@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.2.0</version>
+	</parent>
+
+	<artifactId>carrot-project-instance-karaf</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+
+		<publishSource>${basedir}/target/publish</publishSource>
+
+	</properties>
+
+	<profiles>
+
+		<profile>
+
+			<id>instance</id>
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>publish-prepare</id>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<phase>package</phase>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>src/main/script</directory>
+											<filtering>true</filtering>
+										</resource>
+										<resource>
+											<directory>src/main/template</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+									<outputDirectory>${publishSource}</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+
+						<groupId>com.carrotgarden.maven</groupId>
+						<artifactId>carrot-maven-aws-plugin</artifactId>
+						<version>1.1.2</version>
+
+						<configuration>
+
+							<amazonRegion>${amazonRegion}</amazonRegion>
+
+							<stackName>${stackName}</stackName>
+							<stackServerId>com.carrotgarden.aws.stack</stackServerId>
+							<stackTemplateFile>${publishSource}/formation.template</stackTemplateFile>
+
+							<stackInputParams>
+								<KeyName>user1@wks002</KeyName>
+								<InstanceType>t1.micro</InstanceType>
+								<DNSZoneName>carrotgarden.com.</DNSZoneName>
+								<DNSHostName>${DNSHostName}</DNSHostName>
+							</stackInputParams>
+
+						</configuration>
+
+						<executions>
+
+							<execution>
+								<id>stack-create</id>
+								<phase>package</phase>
+								<goals>
+									<goal>cloud-formation-create</goal>
+								</goals>
+							</execution>
+
+						</executions>
+
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+
+		<profile>
+			<id>eu-west-1</id>
+			<properties>
+				<amazonRegion>eu-west-1</amazonRegion>
+				<stackName>karaf-eu-carrotgarden-com</stackName>
+				<DNSHostName>karaf.eu.carrotgarden.com.</DNSHostName>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>us-east-1</id>
+			<properties>
+				<amazonRegion>us-east-1</amazonRegion>
+				<stackName>karaf-us-carrotgarden-com</stackName>
+				<DNSHostName>karaf.us.carrotgarden.com.</DNSHostName>
+			</properties>
+		</profile>
+
+	</profiles>
+
+</project>

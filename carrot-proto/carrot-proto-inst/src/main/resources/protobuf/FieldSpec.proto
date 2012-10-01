@@ -1,0 +1,103 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for message fields
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.inst";
+option java_outer_classname = "FieldSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// message options descriptor
+import "google/protobuf/descriptor.proto";
+
+// define static message fields for meta data
+extend google.protobuf.MessageOptions {
+	optional string optionEnumNameSuffix = 50001; // message type enum name suffix
+	optional string optionExtensionPrefix = 50002; // message extension name prefix
+}
+
+//
+enum BookType {
+	NoBook = 0;
+	DefaultBook = 1;
+	ImpliedBook = 2;
+	CombinedBook = 3;
+}
+
+//
+enum OptionType {
+	CallOption = 1;
+	PutOption = 2;
+}
+
+//
+enum OptionStyle {
+	DefaultStyle = 0;
+	AmericanStyle = 1;
+	EuropeanStyle = 2;
+}
+
+//
+enum SpreadType {
+	DefaultSpread = 0;
+	CondorSpread = 1;
+	ButterflySpread = 2;
+}
+
+//
+message Decimal {
+	optional sint64 mantissa = 1;
+	optional sint32 exponent = 2;
+}
+
+//
+message Interval {
+	optional sint64 timeStart = 1; // millisFIX
+	optional sint64 timeFinish = 2; // millisFIX
+}
+
+//
+message Calendar {
+	optional Interval lifeTime = 1;
+	repeated Interval marketHours = 2; // next 2 weeks
+}
+
+//
+enum PriceFraction {
+	FactionBinary_Z00 = 1; // 1/1
+	FactionBinary_N01 = 1; // 1/2
+	FactionBinary_N02 = 1; // 1/4
+	FactionBinary_N03 = 1; // 1/8
+	FactionBinary_N04 = 1; // 1/16
+	FactionBinary_N05 = 1; // 1/32
+	FactionBinary_N06 = 1; // 1/64
+	FactionBinary_N07 = 1; // 1/128
+	FactionBinary_N08 = 1; // 1/256
+	FactionBinary_N09 = 1; // 1/512
+	//
+	FactionDecimal_Z00 = 2; // 1.0
+	FactionDecimal_N01 = 2; // 0.1
+	FactionDecimal_N02 = 2; // 0.01
+	FactionDecimal_N03 = 2; // 0.001
+	FactionDecimal_N04 = 2; // 0.000,1
+	FactionDecimal_N05 = 2; // 0.000,01
+	FactionDecimal_N06 = 2; // 0.000,001
+	FactionDecimal_N07 = 2; // 0.000,000,1
+	FactionDecimal_N08 = 2; // 0.000,000,01
+	FactionDecimal_N09 = 2; // 0.000,000,001
+}
+
+//
+message PriceDisplay {
+	optional sint32 priceFactor = 1; //
+	optional PriceFraction fraction = 2;
+}

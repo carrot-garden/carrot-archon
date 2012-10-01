@@ -1,0 +1,54 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for messages
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.assm";
+option java_outer_classname = "MessageSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// packet type
+enum PacketType {
+//
+	MarketData = 10;
+	MarketNews = 70;
+	Instrument = 80;
+	//
+	DataSubscribeRequest = 100;
+	DataSubscribeResponse = 101;
+	//
+	NewsSubscribeRequest = 102;
+	NewsSubscribeResponse = 103;
+	//
+	InstrumentRequest = 104;
+	InstrumentResponse = 105;
+	//
+	LoginRequest = 106;
+	LoginResponse = 107;
+	//
+	HeartBeat = 127;
+	//
+	// keep under 128
+}
+
+// packet : header + message
+message Packet {
+// header fields
+	optional sint32 channel = 1; // packet channel number
+	optional sint64 sequence = 2; // packet sequence number inside the channel
+	optional sint64 timeStamp = 3; // packet time stamp, millisUTC
+	optional PacketType type = 4; // sub type selector
+	//
+	optional bytes message = 5; // message or message list
+	//
+	// keep under 128
+}

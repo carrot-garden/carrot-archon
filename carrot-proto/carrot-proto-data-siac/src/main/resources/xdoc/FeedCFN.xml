@@ -1,0 +1,457 @@
+<protocol>
+
+	<config
+		info="protocol for CFN feed - CBOE Financial Network Market Data Dissemination For CBOE Futures Exchange Products">
+		<main class="com.carrotgarden.proto.data.siac.CFN" />
+		<codec class="com.carrotgarden.proto.data.cfn.CodecCFN" />
+		<converter class="com.carrotgarden.proto.data.cfn.ConverterCFN" />
+	</config>
+
+	<record name="Packet">
+
+		<field name="separator1" type="byte" codec="number" size="1" />
+
+		<field name="messageList" type="Message" list="true" separator="0x1F" />
+
+		<field name="separator2" type="byte" codec="number" size="1" />
+
+	</record>
+
+	<record name="Message">
+
+		<field name="head" type="Head" />
+
+		<field name="body" type="Body" union="true"
+			code="new String( new byte[]{ head.category(), head.type() })" />
+
+	</record>
+
+	<record name="Head"
+		info="4.0 MESSAGE HEADER The Message Header supplied on each message contains 
+		a total of 18 Bytes and conforms in all cases to the following data fields:">
+
+		<field name="exchange" type="byte" codec="number" size="1"
+			info="The Exchange ID field is a 1 Byte, 
+			Alphabetic character that identifies the CFE 
+			as the initiator of the message" />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" />
+
+		<field name="category" type="byte" codec="string" size="1"
+			enum="MessageCategory" info="" />
+
+		<field name="type" type="byte" codec="string" size="1" enum="MessageType"
+			info="" />
+
+		<field name="sequence" type="int" codec="number" size="8"
+			info="4.05 MESSAGE SEQUENCE NUMBER (MSN) The Message Sequence Number (MSN) is an 8 Byte, 
+			Numeric, Right Justified, Zero filled field." />
+
+		<field name="timestamp" type="int" codec="number" size="6"
+			info="4.06 TIME The Time (Central Time) field is a 6 Byte, Numeric Character, Zero filled field. Format
+			is (Military) HHMMSS where HH=Hour, MM=Minute and SS=Second. Indicates the
+			Time that a transaction is disseminated. For Retransmissions, the Time will contain the
+			original Time that the transaction was disseminated." />
+
+	</record>
+
+	<record name="InstIndex" info="index instrument;" size="6">
+
+		<field name="symbol" type="String" codec="string" size="6"
+			info="SECURITY SYMBOL 6 Bytes, Alphabetic. Left Justified, Space filled. Identifies the unique symbol assigned to the security." />
+
+	</record>
+
+	<record name="InstFuture" info="future instrument" size="9">
+
+		<field name="symbol" type="String" codec="string" size="6"
+			info="SECURITY SYMBOL 6 Bytes, Alphabetic. Left Justified, Space filled. Identifies the unique symbol assigned to the security." />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" />
+
+		<field name="month" type="byte" codec="string" size="1"
+			enum="ExpirationMonth" info="" />
+
+		<field name="year" type="byte" codec="string" size="1"
+			enum="ExpirationYear" info="" />
+
+	</record>
+
+	<record name="InstOption" info="option instrument" size="18">
+
+		<field name="symbol" type="String" codec="string" size="6"
+			info="SECURITY SYMBOL 6 Bytes, Alphabetic. Left Justified, Space filled. Identifies the unique symbol assigned to the security." />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" />
+
+		<field name="month" type="byte" codec="string" size="1"
+			enum="ExpirationMonth" info="" />
+
+		<field name="year" type="byte" codec="string" size="1"
+			enum="ExpirationYear" info="" />
+
+		<field name="optionType" type="byte" codec="string" size="1"
+			enum="OptionIndicator" info="1 byte" />
+
+		<field name="strikeExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="strikeMantissa" type="int" codec="number" size="7" />
+
+	</record>
+
+	<union name="Body"
+		info="message body polymorph; contains one of the following options">
+
+		<option name="F_T_00" type="BodyFutureTrade" code="m " info="" />
+		<option name="F_T_01" type="BodyFutureTrade" code="mA" info="" />
+		<option name="F_T_02" type="BodyFutureTrade" code="mB" info="" />
+		<option name="F_T_03" type="BodyFutureTrade" code="mC" info="" />
+		<option name="F_T_04" type="BodyFutureTrade" code="mD" info="" />
+		<option name="F_T_05" type="BodyFutureTrade" code="mE" info="" />
+		<option name="F_T_06" type="BodyFutureTrade" code="mF" info="" />
+		<option name="F_T_07" type="BodyFutureTrade" code="mG" info="" />
+		<option name="F_T_08" type="BodyFutureTrade" code="mH" info="" />
+		<option name="F_T_09" type="BodyFutureTrade" code="mJ" info="" />
+		<option name="F_T_10" type="BodyFutureTrade" code="mK" info="" />
+		<option name="F_T_11" type="BodyFutureTrade" code="mL" info="" />
+		<option name="F_T_12" type="BodyFutureTrade" code="mM" info="" />
+		<option name="F_T_13" type="BodyFutureTrade" code="mN" info="" />
+		<option name="F_T_14" type="BodyFutureTrade" code="mO" info="" />
+		<option name="F_T_15" type="BodyFutureTrade" code="mP" info="" />
+		<option name="F_T_16" type="BodyFutureTrade" code="mQ" info="" />
+		<option name="F_T_17" type="BodyFutureTrade" code="mR" info="" />
+		<option name="F_T_18" type="BodyFutureTrade" code="mS" info="" />
+
+		<option name="F_O_00" type="BodyOptionTrade" code="a " info="" />
+		<option name="F_O_01" type="BodyOptionTrade" code="aA" info="" />
+		<option name="F_O_02" type="BodyOptionTrade" code="aB" info="" />
+		<option name="F_O_03" type="BodyOptionTrade" code="aC" info="" />
+		<option name="F_O_04" type="BodyOptionTrade" code="aD" info="" />
+		<option name="F_O_05" type="BodyOptionTrade" code="aE" info="" />
+		<option name="F_O_06" type="BodyOptionTrade" code="aF" info="" />
+		<option name="F_O_07" type="BodyOptionTrade" code="aG" info="" />
+		<option name="F_O_08" type="BodyOptionTrade" code="aH" info="" />
+		<option name="F_O_09" type="BodyOptionTrade" code="aJ" info="" />
+		<option name="F_O_10" type="BodyOptionTrade" code="aK" info="" />
+		<option name="F_O_11" type="BodyOptionTrade" code="aL" info="" />
+		<option name="F_O_12" type="BodyOptionTrade" code="aM" info="" />
+		<option name="F_O_13" type="BodyOptionTrade" code="aN" info="" />
+		<option name="F_O_14" type="BodyOptionTrade" code="aO" info="" />
+		<option name="F_O_15" type="BodyOptionTrade" code="aP" info="" />
+		<option name="F_O_16" type="BodyOptionTrade" code="aQ" info="" />
+		<option name="F_O_17" type="BodyOptionTrade" code="aR" info="" />
+		<option name="F_O_18" type="BodyOptionTrade" code="aS" info="" />
+
+		<option name="F_BT_0" type="BodyFutureBookTop" code="r " info="" />
+		<option name="F_BT_1" type="BodyFutureBookTop" code="rF" info="" />
+		<option name="F_BT_2" type="BodyFutureBookTop" code="rR" info="" />
+		<option name="F_BT_3" type="BodyFutureBookTop" code="rT" info="" />
+		<option name="F_BT_4" type="BodyFutureBookTop" code="rI" info="" />
+		<option name="F_BT_5" type="BodyFutureBookTop" code="rB" info="" />
+		<option name="F_BT_6" type="BodyFutureBookTop" code="rO" info="" />
+		<option name="F_BT_7" type="BodyFutureBookTop" code="rC" info="" />
+
+		<option name="O_BT_0" type="BodyOptionBookTop" code="k " info="" />
+		<option name="O_BT_1" type="BodyOptionBookTop" code="kF" info="" />
+		<option name="O_BT_2" type="BodyOptionBookTop" code="kR" info="" />
+		<option name="O_BT_3" type="BodyOptionBookTop" code="kT" info="" />
+		<option name="O_BT_4" type="BodyOptionBookTop" code="kI" info="" />
+		<option name="O_BT_5" type="BodyOptionBookTop" code="kB" info="" />
+		<option name="O_BT_6" type="BodyOptionBookTop" code="kO" info="" />
+		<option name="O_BT_7" type="BodyOptionBookTop" code="kC" info="" />
+
+		<option name="F_I" type="BodyFutureInterest" code="n " info="" />
+
+		<option name="U_T" type="BodyUnderlyingTrade" code="Y " info="" />
+
+		<option name="U_BT" type="BodyUnderlyingBookTop" code="YI"
+			info="" />
+
+		<option name="F_EOD" type="BodyFutureEndOfDay" code="o " info="" />
+
+		<option name="F_S" type="BodyFutureSettlement" code="s " info="" />
+
+	</union>
+
+	<record name="BodyFutureTrade" info="5.01 FUTURES LAST SALE">
+
+		<field name="instrument" type="InstFuture" />
+
+		<field name="reserved1" type="byte" codec="skip" size="9" />
+
+		<field name="volume" type="int" codec="number" size="6" />
+
+		<field name="priceExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="priceMantissa" type="int" codec="number" size="8" />
+
+		<field name="reserved2" type="byte" codec="skip" size="1" />
+
+		<field name="sessionIdicator" type="byte" codec="string" size="1"
+			enum="SessionIndicator" info="morning/normal" />
+
+		<field name="reserved3" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<record name="BodyOptionTrade" info="5.08 OPTIONS ON FUTURES LAST SALE">
+
+		<field name="instrument" type="InstOption" />
+
+		<field name="volume" type="int" codec="number" size="6" />
+
+		<field name="priceExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="priceMantissa" type="int" codec="number" size="8" />
+
+		<field name="sessionIdicator" type="byte" codec="string" size="1"
+			enum="SessionIndicator" info="morning/normal" />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<record name="BodyFutureBookTop" info="5.02 FUTURES QUOTE WITH SIZE">
+
+		<field name="instrument" type="InstFuture" />
+
+		<field name="reserved1" type="byte" codec="skip" size="9" />
+
+		<field name="priceExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="priceBID" type="int" codec="number" size="8" />
+
+		<field name="sizeBID" type="int" codec="number" size="5" />
+
+		<field name="priceASK" type="int" codec="number" size="8" />
+
+		<field name="sizeASK" type="int" codec="number" size="5" />
+
+		<field name="sessionIdicator" type="byte" codec="string" size="1"
+			enum="SessionIndicator" info="morning/normal" />
+
+		<field name="reserved2" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<record name="BodyOptionBookTop" info="5.09 OPTIONS ON FUTURES QUOTE WITH SIZE">
+
+		<field name="instrument" type="InstOption" />
+
+		<field name="priceExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="priceBID" type="int" codec="number" size="8" />
+
+		<field name="sizeBID" type="int" codec="number" size="5" />
+
+		<field name="priceASK" type="int" codec="number" size="8" />
+
+		<field name="sizeASK" type="int" codec="number" size="5" />
+
+		<field name="sessionIdicator" type="byte" codec="string" size="1"
+			enum="SessionIndicator" info="morning/normal" />
+
+		<field name="reserved2" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<record name="BodyFutureInterest" info="5.03 FUTURES OPEN INTEREST">
+
+		<field name="instrument" type="InstFuture" />
+
+		<field name="reserved1" type="byte" codec="skip" size="9" />
+
+		<field name="interest" type="int" codec="number" size="7" />
+
+		<field name="reserved2" type="byte" codec="skip" size="2" />
+
+	</record>
+
+	<record name="EntryIndexTrade">
+
+		<field name="instrument" type="InstIndex" />
+
+		<field name="priceIndex" type="int" codec="number" size="7" />
+
+	</record>
+
+	<record name="BodyUnderlyingTrade" info="5.04 UNDERLYING VALUE – LAST SALE">
+
+		<field name="listSize" type="int" codec="number" size="2" />
+
+		<field name="entryList" type="EntryIndexTrade" list="true"
+			counter="listSize" />
+
+	</record>
+
+	<record name="EntryIndexBookTop">
+
+		<field name="instrument" type="InstIndex" />
+
+		<field name="reserved1" type="byte" codec="skip" size="1" />
+
+		<field name="priceIndexBID" type="int" codec="number" size="7" />
+
+		<field name="priceIndexASK" type="int" codec="number" size="7" />
+
+	</record>
+
+	<record name="BodyUnderlyingBookTop" info="5.05 UNDERLYING VALUE – BID AND ASK">
+
+		<field name="listSize" type="int" codec="number" size="2" />
+
+		<field name="entryList" type="EntryIndexBookTop" list="true"
+			counter="listSize" />
+
+	</record>
+
+	<record name="BodyFutureEndOfDay" info="5.06 FUTURES END OF DAY SUMMARY">
+
+		<field name="instrument" type="InstFuture" />
+
+	</record>
+
+	<record name="BodyOptionEndOfDay" info="5.10 OPTIONS ON FUTURES END OF DAY SUMMARY">
+
+		<field name="instrument" type="InstOption" />
+
+	</record>
+
+	<record name="BodyFutureSettlement">
+
+		<field name="instrument" type="InstFuture" info="9 bytes" />
+
+		<field name="reserved1" type="byte" codec="skip" size="9" />
+
+		<field name="volume" type="int" codec="number" size="6" />
+
+		<field name="priceExponent" type="byte" codec="string" size="1"
+			enum="PriceExponent" info="price denominator" />
+
+		<field name="priceMantissa" type="int" codec="number" size="8" />
+
+		<field name="sessionIdicator" type="byte" codec="string" size="1"
+			enum="SessionIndicator" info="morning/normal" />
+
+		<field name="reserved3" type="byte" codec="skip" size="1" />
+
+	</record>
+
+	<enum name="MessageCategory" codec="string" info="">
+
+		<value name="TRADE_O" code="a" info="Options on Futures Last Sale" />
+		<value name="TRADE_F" code="m" info="Futures/Index Last Sale" />
+
+		<value name="ADMIN" code="C" />
+		<value name="CONTROL" code="H" />
+		<value name="UNDERLYING" code="Y" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="MessageType" codec="string" info="">
+
+		<value name="REGULAR" code=" "
+			info="Indicates that the transaction was a regular sale and was made without stated conditions" />
+
+		<value name="CANCEL" code="A"
+			info="Transaction previously reported is now to be cancelled" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="ExpirationYear" codec="string"
+		info="1 Byte, Alphanumeric, Space filled. Contains the last digit of the expiration year.">
+
+		<value name="YEAR_0" code="0" info="" />
+		<value name="YEAR_1" code="1" info="" />
+		<value name="YEAR_2" code="2" info="" />
+		<value name="YEAR_3" code="3" info="" />
+		<value name="YEAR_4" code="4" info="" />
+		<value name="YEAR_5" code="5" info="" />
+		<value name="YEAR_6" code="6" info="" />
+		<value name="YEAR_7" code="7" info="" />
+		<value name="YEAR_8" code="8" info="" />
+		<value name="YEAR_9" code="9" info="" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="ExpirationMonth" codec="string"
+		info="1 Byte, Alphabetic. It indicates the expiration month for the security future.">
+
+		<value name="JAN" code="F" info="January" />
+		<value name="FEB" code="G" info="January" />
+		<value name="MAR" code="H" info="January" />
+		<value name="APR" code="J" info="January" />
+		<value name="MAY" code="K" info="January" />
+		<value name="JUN" code="M" info="January" />
+		<value name="JUL" code="N" info="January" />
+		<value name="AUG" code="Q" info="January" />
+		<value name="SEP" code="U" info="January" />
+		<value name="OCT" code="V" info="January" />
+		<value name="NOV" code="X" info="January" />
+		<value name="DEC" code="Z" info="January" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="OptionIndicator" codec="string">
+
+		<value name="CALL" code="C" info="" />
+		<value name="PUTT" code="P" info="" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+	</enum>
+
+	<enum name="SessionIndicator" codec="string">
+
+		<value name="MORINING" code="a" info="" />
+		<value name="NORMAL" code=" " info="" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="NetChangeIndicator" codec="string"
+		info="1 Byte, Special or Numeric. 
+		Will contain a plus (+) sign, a minus (–) sign 
+		or a Zero (0). Represents the upward, downward 
+		or unchanged price movement in a contract’s trades.">
+
+		<value name="ZERO" code="0" info="" />
+		<value name="PLUS" code="+" info="" />
+		<value name="MINUS" code="-" info="" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+	<enum name="PriceExponent" codec="string"
+		info="6.21 PRICE DENOMINATOR CODE and PREMIUM PRICE DENOMINATOR CODE
+		1 Byte, Alphanumeric. The Price Denominator Code field indicates the position
+		of the floating decimal point.">
+
+		<value name="NEG_02" code="A" info="" />
+		<value name="NEG_03" code="B" info="" />
+		<value name="NEG_04" code="C" info="" />
+		<value name="NEG_05" code="D" info="" />
+		<value name="NEG_06" code="E" info="" />
+		<value name="NEG_07" code="F" info="" />
+		<value name="NEG_08" code="G" info="" />
+		<value name="NEG_09" code="H" info="" />
+
+		<value name="UNKNOWN" code="?" info="default value for error condition" />
+
+	</enum>
+
+</protocol>

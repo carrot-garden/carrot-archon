@@ -1,0 +1,103 @@
+//
+/**
+ * https://developers.google.com/protocol-buffers/docs/proto
+ *
+ * factory for messages
+ */
+
+//
+package carrotgarden; // non-java (C, C++, etc) package name space
+
+//
+option java_package = "com.carrotgarden.proto.inst";
+option java_outer_classname = "MessageSpec";
+option java_multiple_files = true;
+option java_generate_equals_and_hash = true;
+//
+option optimize_for = SPEED;
+
+// message fields
+import "FieldSpec.proto";
+
+//
+enum InstType {
+	ForexInst = 1000;
+	IndexInst = 1001;
+	EquityInst = 1002;
+	FutureInst = 1003;
+	OptionInst = 1004;
+	SpreadInst = 1005;
+}
+
+//
+extend Instrument {
+	optional Forex instForex = 1000; //
+	optional Index instIndex = 1001; //
+	optional Equity instEquity = 1002; //
+	optional Future instFuture = 1003; //
+	optional Option instOption = 1004; //
+	optional Spread instSpread = 1005; //
+}
+
+// market instrument message
+message Instrument {
+	option (optionEnumNameSuffix) = "Inst"; // msg type enum names must use suffix
+	option (optionExtensionPrefix) = "inst"; // msg extension names must use prefix
+	//
+	extensions 1000 to 2000;
+	//
+	optional string sourceId = 1; // external GUID;
+	optional sint64 targetId = 2; // internal GUID;
+	//
+	optional InstType instType = 3;
+	//
+	optional BookType bookType = 4;
+	optional sint32 bookSize = 5;
+	//
+	optional string symbol = 6; // original exchange's symbol
+	optional string description = 7; // original exchange's description
+	//
+	optional PriceDisplay priceDisplay = 8; // display rendering
+	//
+	optional Calendar calendar = 9; //
+	//
+	optional string codeCFI = 10; //
+	//
+	optional string currency = 11; //
+	//
+	optional sint64 recordCreateTime = 12; // when instrument was created
+	optional sint64 recordUpdateTime = 13; // when instrument must be updated
+	//
+}
+
+//
+message Equity {
+}
+
+//
+message Forex {
+}
+
+//
+message Index {
+	optional sint64 underlyingTargetId = 1; //
+}
+
+//
+message Future {
+	optional sint64 underlyingTargetId = 1; //
+}
+
+//
+message Option {
+	optional sint64 underlyingTargetId = 1; //
+	optional Decimal strikePrice = 2;
+	optional OptionType optionType = 3;
+	optional OptionStyle optionStyle = 4;
+}
+
+//
+message Spread {
+	repeated sint64 underlyingTargetId = 1; //
+	optional SpreadType spreadType = 2;
+}

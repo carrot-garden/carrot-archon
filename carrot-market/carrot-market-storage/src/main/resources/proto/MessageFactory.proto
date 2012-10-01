@@ -1,0 +1,97 @@
+package carrotgarden;
+
+option java_package = "com.carrotgarden.storage.proto";
+option java_outer_classname = "MessageFactory";
+option optimize_for = SPEED;
+
+
+message MarketTop {
+
+	// millis UTC
+	optional int64 time = 1; 
+
+	// shared price exponent
+	optional sint32 priceExponent = 2;
+	
+	// below price mantissa
+	optional sint64 priceBelow = 3;
+	
+	// above price mantissa
+	optional sint64 priceAbove = 4;
+
+	// shared size exponent
+	optional sint32 sizeExponent = 5;
+	
+	// below size mantissa
+	optional sint64 sizeBelow = 6;
+	
+	// above size mantissa
+	optional sint64 sizeAbove = 7;
+	
+}
+
+message MarketBook {
+
+	// price and size index must match
+
+	// millis UTC
+	optional int64 time = 1; 
+
+	// shared price exponent
+	optional sint32 priceExponent = 2;
+
+	// below price mantissa list 
+	repeated sint64 priceBelow = 3 [packed=true];
+	
+	// above price mantissa list
+	repeated sint64 priceAbove = 4 [packed=true];
+	
+	// shared size exponent
+	optional sint32 sizeExponent = 5;
+
+	// below size mantissa list
+	repeated sint64 sizeBelow = 6 [packed=true];
+	
+	// above size mantissa list
+	repeated sint64 sizeAbove = 7 [packed=true];
+
+}
+
+message Market {
+
+	// millis UTC
+	optional int64 time = 1; 
+
+	// shared price exponent
+	optional sint32 priceExponent = 2;
+
+	// below price mantissa list 
+	repeated sint64 priceBelow = 3 [packed=true];
+	
+	// above price mantissa list
+	repeated sint64 priceAbove = 4 [packed=true];
+	
+	// shared size exponent
+	optional sint32 sizeExponent = 5;
+
+	// below size mantissa list
+	repeated sint64 sizeBelow = 6 [packed=true];
+	
+	// above size mantissa list
+	repeated sint64 sizeAbove = 7 [packed=true];
+	
+	///////////////////////////
+	
+	// open price mantissa
+	optional sint64 priceOpen = 8;
+	
+	// high price mantissa
+	optional sint64 priceHigh = 9;
+
+	// low price mantissa
+	optional sint64 priceLow = 10;
+
+	// close price mantissa
+	optional sint64 priceClose = 11;
+
+}
