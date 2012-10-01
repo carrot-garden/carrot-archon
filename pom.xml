@@ -122,7 +122,7 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.6.6</version>
+				<version>1.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
@@ -143,11 +143,11 @@
 				<version>4.10</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.testng</groupId>
-				<artifactId>testng</artifactId>
-				<version>6.7</version>
-			</dependency>
+			<!-- <dependency> -->
+			<!-- <groupId>org.testng</groupId> -->
+			<!-- <artifactId>testng</artifactId> -->
+			<!-- <version>6.8</version> -->
+			<!-- </dependency> -->
 
 			<dependency>
 				<groupId>org.easymock</groupId>
@@ -172,11 +172,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.testng</groupId> -->
+		<!-- <artifactId>testng</artifactId> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.easymock</groupId>
@@ -435,7 +435,6 @@
 					<version>1.4</version>
 				</plugin>
 
-				<!-- support both junit and testng -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
@@ -446,11 +445,11 @@
 							<artifactId>surefire-junit4</artifactId>
 							<version>2.12.3</version>
 						</dependency>
-						<dependency>
-							<groupId>org.apache.maven.surefire</groupId>
-							<artifactId>surefire-testng</artifactId>
-							<version>2.12.3</version>
-						</dependency>
+						<!-- <dependency> -->
+						<!-- <groupId>org.apache.maven.surefire</groupId> -->
+						<!-- <artifactId>surefire-testng</artifactId> -->
+						<!-- <version>2.12.3</version> -->
+						<!-- </dependency> -->
 					</dependencies>
 				</plugin>
 
@@ -1219,6 +1218,7 @@
 								<ant>XML_STYLE</ant>
 								<scala>JAVADOC_STYLE</scala>
 								<gitignore>SCRIPT_STYLE</gitignore>
+								<component>SCRIPT_STYLE</component>
 								<conf>SCRIPT_STYLE</conf>
 								<cfg>SCRIPT_STYLE</cfg>
 								<properties>SCRIPT_STYLE</properties>
