@@ -8,7 +8,7 @@
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
-	<version>1.4.4-SNAPSHOT</version>
+	<version>1.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<url>http://www.carrotgarden.com/</url>
@@ -110,7 +110,7 @@
 			<dependency>
 				<groupId>org.osgi</groupId>
 				<artifactId>org.osgi.compendium</artifactId>
-				<version>4.2.0</version>
+				<version>4.3.1</version>
 			</dependency>
 
 			<dependency>
@@ -122,7 +122,7 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.1</version>
+				<version>1.7.2</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
@@ -140,7 +140,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.10</version>
+				<version>4.11</version>
 			</dependency>
 
 			<!-- <dependency> -->
@@ -158,7 +158,7 @@
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-all</artifactId>
-				<version>1.9.5-rc1</version>
+				<version>1.9.5</version>
 			</dependency>
 
 		</dependencies>
@@ -200,7 +200,7 @@
 			<extension>
 				<groupId>org.kuali.maven.wagons</groupId>
 				<artifactId>maven-s3-wagon</artifactId>
-				<version>1.1.14</version>
+				<version>1.1.19</version>
 			</extension>
 
 		</extensions>
@@ -212,12 +212,14 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-invoker-plugin</artifactId>
-					<version>1.7</version>
+					<version>1.8</version>
 					<configuration>
 						<debug>false</debug>
+						<showErrors>false</showErrors>
+						<streamLogs>false</streamLogs>
 						<ignoreFailures>false</ignoreFailures>
-						<projectsDirectory>src/int</projectsDirectory>
-						<cloneProjectsTo>target/int-work</cloneProjectsTo>
+						<projectsDirectory>src/it</projectsDirectory>
+						<cloneProjectsTo>target/it</cloneProjectsTo>
 						<invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
 						<pomIncludes>
 							<include>archon/pom.xml</include>
@@ -261,7 +263,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>2.6</version>
 				</plugin>
 
 				<plugin>
@@ -285,13 +287,13 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-plugin-plugin</artifactId>
-					<version>3.1</version>
+					<version>3.2</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>2.6</version>
 				</plugin>
 
 				<plugin>
@@ -309,7 +311,7 @@
 				<plugin>
 					<groupId>org.kuali.maven.plugins</groupId>
 					<artifactId>properties-maven-plugin</artifactId>
-					<version>1.3.2</version>
+					<version>1.4.8</version>
 				</plugin>
 
 				<plugin>
@@ -351,7 +353,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.1</version>
+					<version>3.2</version>
 				</plugin>
 
 				<plugin>
@@ -369,7 +371,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.3</version>
+					<version>2.4</version>
 				</plugin>
 
 				<plugin>
@@ -381,19 +383,19 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>2.4</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>versions-maven-plugin</artifactId>
-					<version>1.3.1</version>
+					<version>2.0</version>
 				</plugin>
 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>3.0</version>
 					<configuration>
 						<source>${projectJavaVersion}</source>
 						<target>${projectJavaVersion}</target>
@@ -410,7 +412,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.8.1</version>
+					<version>2.9</version>
 					<configuration>
 						<quiet>true</quiet>
 						<show>protected</show>
@@ -426,7 +428,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.2.1</version>
 				</plugin>
 
 				<plugin>
@@ -620,7 +622,7 @@
 				<plugin>
 					<groupId>com.carrotgarden.maven</groupId>
 					<artifactId>carrot-maven-scr-plugin</artifactId>
-					<version>1.1.4</version>
+					<version>1.2.0</version>
 					<configuration>
 						<targetDirectorySCR>OSGI-INF/service-component</targetDirectorySCR>
 						<excludedServices>
@@ -714,23 +716,24 @@
 							<source>
 		<![CDATA[
 		//
-		import java.text.MessageFormat;
+		import java.text.MessageFormat
+		def properties = project.properties
 		//
-		projectTimeLong = System.currentTimeMillis();
-		project.properties["projectTimeLong"] = projectTimeLong;
-		println("### projectTimeLong=" + projectTimeLong);
+		def projectTimeLong = System.currentTimeMillis()
+		properties["projectTimeLong"] = projectTimeLong.toString()
+		println("### projectTimeLong=" + properties["projectTimeLong"])
 		//
-		projectTimeFile = MessageFormat.format("{0,date,yyyy-MM-dd_HH-mm-ss}",projectTimeLong);
-		project.properties["projectTimeFile"] = projectTimeFile;
-		println("### projectTimeFile=" + projectTimeFile);
+		def projectTimeFile = MessageFormat.format("{0,date,yyyy-MM-dd_HH-mm-ss}",projectTimeLong)
+		properties["projectTimeFile"] = projectTimeFile.toString()
+		println("### projectTimeFile=" + properties["projectTimeFile"])
 		//
-		projectTimeISO=MessageFormat.format("{0,date,yyyy-MM-dd'T'HH:mm:ss.SSSZ}",projectTimeLong);
-		project.properties["projectTimeISO"] = projectTimeISO;
-		println("### projectTimeISO=" + projectTimeISO);
+		def projectTimeISO=MessageFormat.format("{0,date,yyyy-MM-dd'T'HH:mm:ss.SSSZ}",projectTimeLong)
+		properties["projectTimeISO"] = projectTimeISO.toString()
+		println("### projectTimeISO=" + properties["projectTimeISO"])
 		//
-		projectTimeYear=MessageFormat.format("{0,date,yyyy}",projectTimeLong);
-		project.properties["projectTimeYear"] = projectTimeYear;
-		println("### projectTimeYear=" + projectTimeYear);
+		def projectTimeYear=MessageFormat.format("{0,date,yyyy}",projectTimeLong)
+		properties["projectTimeYear"] = projectTimeYear.toString()
+		println("### projectTimeYear=" + properties["projectTimeYear"])
 		//
 		]]>
 							</source>
@@ -1395,7 +1398,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.4</version>
+				<version>2.6</version>
 			</plugin>
 
 			<plugin>
