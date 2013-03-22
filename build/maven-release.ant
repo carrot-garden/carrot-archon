@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (C) 2010-2012 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
+    Copyright (C) 2010-2013 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
 
     All rights reserved. Licensed under the OSI BSD License.
 
@@ -12,21 +12,25 @@
 	<echo message="basedir : ${basedir}" />
 
 	<target name="maven">
-		
+
 		<condition property="executable" value="mvn">
 			<os family="unix" />
 		</condition>
 		<condition property="executable" value="mvn.bat">
 			<os family="windows" />
 		</condition>
-		
+
 		<exec executable="${executable}">
-			
+
+			<arg value="release:clean" />
 			<arg value="release:prepare" />
 			<arg value="release:perform" />
-			
+
+			<arg value="--define" />
+			<arg value="localCheckout=true" />
+
 		</exec>
-		
+
 	</target>
 
 </project>

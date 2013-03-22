@@ -1,3 +1,12 @@
+<!--
+
+    Copyright (C) 2010-2013 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
+
+    All rights reserved. Licensed under the OSI BSD License.
+
+    http://www.opensource.org/licenses/bsd-license.php
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
@@ -724,19 +733,19 @@
 		//
 		def projectTimeLong = System.currentTimeMillis()
 		properties["projectTimeLong"] = projectTimeLong.toString()
-		println("### projectTimeLong=" + properties["projectTimeLong"])
+		// println("### projectTimeLong=" + properties["projectTimeLong"])
 		//
 		def projectTimeFile = MessageFormat.format("{0,date,yyyy-MM-dd_HH-mm-ss}",projectTimeLong)
 		properties["projectTimeFile"] = projectTimeFile.toString()
-		println("### projectTimeFile=" + properties["projectTimeFile"])
+		// println("### projectTimeFile=" + properties["projectTimeFile"])
 		//
 		def projectTimeISO=MessageFormat.format("{0,date,yyyy-MM-dd'T'HH:mm:ss.SSSZ}",projectTimeLong)
 		properties["projectTimeISO"] = projectTimeISO.toString()
-		println("### projectTimeISO=" + properties["projectTimeISO"])
+		// println("### projectTimeISO=" + properties["projectTimeISO"])
 		//
 		def projectTimeYear=MessageFormat.format("{0,date,yyyy}",projectTimeLong)
 		properties["projectTimeYear"] = projectTimeYear.toString()
-		println("### projectTimeYear=" + properties["projectTimeYear"])
+		// println("### projectTimeYear=" + properties["projectTimeYear"])
 		//
 		]]>
 							</source>
