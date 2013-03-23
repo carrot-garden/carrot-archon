@@ -1,20 +1,14 @@
-<!--
-
-    Copyright (C) 2010-2013 Andrei Pozolotin <Andrei.Pozolotin@gmail.com>
-
-    All rights reserved. Licensed under the OSI BSD License.
-
-    http://www.opensource.org/licenses/bsd-license.php
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- Copyright (C) 2010-2013 Andrei Pozolotin <Andrei.Pozolotin@gmail.com> 
+	All rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<!-- http://maven.apache.org/ref/3.0.4/maven-model-builder/super-pom.html -->
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.carrotgarden.base</groupId>
 	<artifactId>carrot-archon</artifactId>
-	<version>1.5.2-SNAPSHOT</version>
+	<version>1.6.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<url>http://www.carrotgarden.com/</url>
@@ -74,7 +68,7 @@
 		<projectJavaVersion>1.7</projectJavaVersion>
 		<projectScalaVersion>2.9.2</projectScalaVersion>
 		<projectMavenVersion>3.0.4</projectMavenVersion>
-		
+
 		<!-- Testing plugins: surefire, failsafe. -->
 		<projectTestingVersion>2.12.4</projectTestingVersion>
 
@@ -630,43 +624,19 @@
 				</plugin>
 
 				<!-- generate osgi scr component descriptors -->
-				<plugin>
-					<groupId>com.carrotgarden.maven</groupId>
-					<artifactId>carrot-maven-scr-plugin</artifactId>
-					<version>2.0.1</version>
-					<configuration>
-						<targetDirectorySCR>OSGI-INF/service-component</targetDirectorySCR>
-						<excludedServices>
-							<service>scala.ScalaObject</service>
-							<service>java.lang.Runnable</service>
-							<service>java.io.Serializable</service>
-						</excludedServices>
-						<eclipseSettings>
-							<!-- eclipse maven console settings -->
-							<logBuildTimes>true</logBuildTimes>
-							<logExcludedServices>true</logExcludedServices>
-							<logInvocationDetails>true</logInvocationDetails>
-							<logErrorTraces>true</logErrorTraces>
-							<logComponentDescriptors>true</logComponentDescriptors>
-						</eclipseSettings>
-					</configuration>
-					<executions>
-						<execution>
-							<id>clean</id>
-							<phase>clean</phase>
-							<goals>
-								<goal>clean</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>generate</id>
-							<phase>process-classes</phase>
-							<goals>
-								<goal>generate</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
+				<!-- <plugin> -->
+				<!-- <groupId>com.carrotgarden.maven</groupId> -->
+				<!-- <artifactId>carrot-maven-scr-plugin</artifactId> -->
+				<!-- <version>3.0.0</version> -->
+				<!-- <configuration> -->
+				<!-- <targetDirectorySCR>OSGI-INF/service-component</targetDirectorySCR> -->
+				<!-- <excludedServices> -->
+				<!-- <service>scala.ScalaObject</service> -->
+				<!-- <service>java.lang.Runnable</service> -->
+				<!-- <service>java.io.Serializable</service> -->
+				<!-- </excludedServices> -->
+				<!-- </configuration> -->
+				<!-- </plugin> -->
 
 				<!-- include osgi scr component descriptors -->
 				<plugin>
@@ -700,10 +670,10 @@
 			</plugin>
 
 			<!-- generate osgi scr component descriptors -->
-			<plugin>
-				<groupId>com.carrotgarden.maven</groupId>
-				<artifactId>carrot-maven-scr-plugin</artifactId>
-			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>com.carrotgarden.maven</groupId> -->
+			<!-- <artifactId>carrot-maven-scr-plugin</artifactId> -->
+			<!-- </plugin> -->
 
 			<!-- enable osgi bundle packaging -->
 			<plugin>
