@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden.base</groupId>
+		<artifactId>carrot-archon</artifactId>
+		<version>1.6.0</version>
+	</parent>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-releases</id>
+			<name>Sonatype Nexus Releases</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<scm>
+		<url>https://github.com/carrot-garden/carrot-market</url>
+		<connection>scm:git:git://github.com/carrot-garden/carrot-market.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/carrot-garden/carrot-market.git</developerConnection>
+	</scm>
+	
+	<groupId>com.carrotgarden.health</groupId>
+	<artifactId>carrot-bodyfeed</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>com.carrotgarden.aws.s3.maven</id>
+			<url>s3://maven-repos/snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>com.carrotgarden.aws.s3.maven</id>
+			<url>s3://maven-repos/release</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+
+		<extensions>
+
+			<extension>
+				<groupId>org.kuali.maven.wagons</groupId>
+				<artifactId>maven-s3-wagon</artifactId>
+				<version>1.2.1</version>
+			</extension>
+
+		</extensions>
+
+	</build>
+
+</project>
