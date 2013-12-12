@@ -1,0 +1,27 @@
+<project default="maven" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<property environment="env" />
+
+	<echo message="env.R_HOME  : ${env.R_HOME}" />
+	<echo message="env.ANDROID_HOME : ${env.ANDROID_HOME}" />
+
+	<target name="maven">
+
+		<condition property="executable" value="mvn">
+			<os family="unix" />
+		</condition>
+		<condition property="executable" value="mvn.bat">
+			<os family="windows" />
+		</condition>
+
+		<exec executable="${executable}">
+
+			<arg value="clean" />
+			<arg value="package" />
+
+		</exec>
+	</target>
+
+</project>

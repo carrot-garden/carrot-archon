@@ -1,0 +1,20 @@
+<project default="dex2jar" basedir="./..">
+
+	<echo message="basedir : ${basedir}" />
+
+	<target name="dex2jar">
+
+		<exec executable="mvn">
+			<arg value="clean" />
+			<arg value="package" />
+		</exec>
+
+		<exec executable="d2j-dex2jar.sh">
+			<arg value="--output" />
+			<arg value="./target/classes.jar" />
+			<arg value="./target/classes.dex" />
+		</exec>
+
+	</target>
+
+</project>
