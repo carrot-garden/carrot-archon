@@ -1,4 +1,3 @@
-
 package com.carrotgarden.bodyfeed.android;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -35,7 +34,7 @@ import java.util.logging.Logger;
  * Sample activity for Google Tasks API v1. It demonstrates how to use
  * authorization to list tasks with the user's permission.
  */
-public final class TasksSample extends Activity {
+public final class DefaultActivity extends Activity {
 
 	/**
 	 * Logging level for HTTP requests/responses.
@@ -99,7 +98,7 @@ public final class TasksSample extends Activity {
 		// Tasks client
 		service = new com.google.api.services.tasks.Tasks.Builder(
 				httpTransport, jsonFactory, credential).setApplicationName(
-				"example-google-tasks-android/1.0").build();
+				"body-feed/1.0.0").build();
 
 	}
 
@@ -108,7 +107,7 @@ public final class TasksSample extends Activity {
 		runOnUiThread(new Runnable() {
 			public void run() {
 				Dialog dialog = GooglePlayServicesUtil.getErrorDialog(
-						connectionStatusCode, TasksSample.this,
+						connectionStatusCode, DefaultActivity.this,
 						REQUEST_GOOGLE_PLAY_SERVICES);
 				dialog.show();
 			}

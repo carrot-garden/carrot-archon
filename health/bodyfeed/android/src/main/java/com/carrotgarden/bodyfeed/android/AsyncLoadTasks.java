@@ -13,7 +13,7 @@ import java.util.List;
  */
 class AsyncLoadTasks extends CommonAsyncTask {
 
-	AsyncLoadTasks(TasksSample tasksSample) {
+	AsyncLoadTasks(DefaultActivity tasksSample) {
 		super(tasksSample);
 	}
 
@@ -37,7 +37,7 @@ class AsyncLoadTasks extends CommonAsyncTask {
 		
 	}
 
-	static void run(TasksSample tasksSample) {
+	static void run(DefaultActivity tasksSample) {
 		new AsyncLoadTasks(tasksSample).execute();
 	}
 	
