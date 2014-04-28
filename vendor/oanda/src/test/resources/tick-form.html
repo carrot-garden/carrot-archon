@@ -1,0 +1,687 @@
+
+
+
+
+
+
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<script type="text/javascript">
+<!--
+	// Inlined /jslib/perf/log_start_time.js
+	window.start_time = new Date();
+//-->
+</script>
+<script type="text/javascript"
+	src="/wandacache/jquery-1.10.2-a5e9a32f67db1ee119e5cb7c23514155fbdbad58.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Historical Forex Data | OANDA fxTrade</title>
+<!--[if lte IE 6]>
+    <link rel="stylesheet" href="/wandacache/ie6-788b5ddfa03c8e1a22d6cf85410c67a454a45a21.css" type="text/css"><![EndIf]-->
+<!--[if IE 7]>
+    <link rel="stylesheet" href="/wandacache/ie7-83d250de236f97697eea7b9cb4e08dda6941515f.css" type="text/css"><![EndIf]-->
+<!--[if IE 8]>
+    <link rel="stylesheet" href="/wandacache/ie8-72648ad42c60814276ebc0c068eb0e62bd6140e7.css" type="text/css"><![EndIf]-->
+<!--[if gte IE 9]><!-->
+<link rel="stylesheet"
+	href="/wandacache/590e8e4ff6f8a5d967e6e24004e17ae2dd6bd7fe.css"
+	type="text/css">
+<!--<![endif]-->
+<link rel="stylesheet"
+	href="/wandacache/a3a981c268abe97c54ac708920e2b41c4dcfb70e.css"
+	type="text/css">
+<script type="text/javascript">
+	window.variant_name = window.CT_X_Seg = '__variant_name_placeholder__';
+</script>
+<meta name="description" content="">
+<meta name="keywords"
+	content="tick,this,data,academic,fxTrade,FXTicks,account,Tick,instrument,length,historical,function,order,institution,OANDA,their,exemption,form,quality,service,1000,qualify,need,counter,from,failure,Historical,Data,your,accuracy,with,value,include,more,below,balance,mdash,while,remove,document,Unavailable,member,thisForm,YYYY,instruments,date,Option,params,Ajax,maxLength,configuration,description,setMaxLength,showInfo,faculty,address,details,email,apply,method,options,developing,rates,executed,platform,filtered,actual,corresponding,technical,analysis,request,ensure,high,restrictions,find,about,exemptions,additional,available,filtering,ensures,highest,quantitative,forex,models,time,trading,Rates,algorithms,When,programmers,require,accurate,terms,Agreement,Check,conditions,agree,academicfaculty,Please,sure,disable,above,License,make,ofintended,characters,responseText,evalJSON,Description,status,onSuccess,firstDescendant,enable,Form,Order,onFailure,else,post,fxticks,substring,className,createElement,textarea,relatedElement,firstChild,Request,instrumentajax,nodeValue,getElementsByTagName,Processing,queued,processing,submit,soon,only,have,possible,each,user,previous,processed,proprietary,Access,subject,limited,browser,enabled,This,requires">
+<meta name="language" content="en">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=0.8, maximum-scale=2, minimum-scale=0.3">
+<link href="https://plus.google.com/114987208887381442392"
+	rel="publisher">
+<link rel="shortcut icon" href="/images/favicon.ico">
+<link rel="canonical" href="/trade-forex/fxtrade/historical-data">
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="/wandacache/ieFix-60b22fc76be091710099b5aabe0a88ecdbbb8ef9.js"></script><![endif]-->
+</head>
+<body id="top">
+	<div id="region_reminder" style="display: none;">
+		Based on your location, we have redirected you to <strong>fxTrade<span
+			id="region_reminder_division_name"></span></strong>. <span
+			id="region_reminder_controls"> <a onclick="return false;"
+			href="/">Close</a>
+		</span>
+	</div>
+
+
+
+
+
+
+	<header>
+	<div class="container">
+
+		<ul id="lang" class="dropdown">
+			<li class="cell"><a href="#">U.S. </a>
+				<ul class="sub_menu" style="display: none;">
+					<ul>
+						<li class="sub-cell"><a
+							href="http://www.oanda.sg/?&amp;stop-geo-ip=yes">ASIA PACIFIC</a></li>
+						<li class="sub-cell"><a
+							href="http://fxtrade.oanda.ca/?&amp;stop-geo-ip=yes">CANADA</a></li>
+						<li class="sub-cell"><a
+							href="http://fxtrade.oanda.co.uk/?&amp;stop-geo-ip=yes">EUROPE</a></li>
+						<li class="sub-cell"><a href="http://www.oanda.jp/">JAPAN</a></li>
+					</ul>
+				</ul></li>
+
+
+
+
+
+
+
+			<li class="cell" id="language_dropdown"><a href="#"
+				onclick="return false;"> ENGLISH </a>
+				<ul class="sub_menu" style="display: none;">
+					<li class="sub-cell"><a id="cns" href="/lang/cns/">&#31616;&#20307;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="cnt" href="/lang/cnt/">&#32321;&#39636;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="de" href="/lang/de/">DEUTSCH</a></li>
+
+
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="es" href="/lang/es/">ESPA&#209;OL</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="fr" href="/lang/fr/">FRAN&#199;AIS</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="it" href="/lang/it/">ITALIANO</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ja" href="/lang/ja/">&#26085;&#26412;&#35486;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ko" href="/lang/ko/">&#54620;&#44397;&#50612;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="pt" href="/lang/pt/">PORTUGU&#202;S</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ru" href="/lang/ru/">P&#1059;&#1057;&#1057;&#1050;&#1048;&#1049;</a></li>
+
+
+
+
+				</ul></li>
+
+		</ul>
+		<div id="sticky-trigger"></div>
+		<nav id="nav" style="padding-bottom: 35px">
+		<div id="top">
+			<a href="http://fxtrade.oanda.com/?&amp;stop-geo-ip=yes" id="logo"><img
+				src="/wandacache/logo-3b63e087b32392711e70d1abc159ef8f777acf4b.png"></a>
+			<div id="top-right">
+
+				<div id="search-bar">
+					<input type="search" id="query" name="q" maxlength="255"
+						placeholder="Enter keyword...
+"
+						onkeypress="return checkSubmit(event)"><input
+						type="submit" value="" id="magnif" onclick="searchRedirect()">
+				</div>
+			</div>
+		</div>
+		<div id="bot">
+			<table id="main-nav">
+				<tr>
+					<td><a href="/why/">Why OANDA </a></td>
+					<td><a href="/platforms">Platforms </a></td>
+					<td><a href="/markets">Markets </a></td>
+					<td><a href="/learn/">Learn </a></td>
+					<td><a href="/analysis/">News &amp; Analysis </a></td>
+					<td><a href="/help/">Support </a></td>
+					<td class="last-list"><a
+						href="http://oanda.com/currency/converter/">Currency Converter
+					</a></td>
+					<td class="last-list"><a href="http://oanda.com/rates/">Exchange
+							Rates for Business </a></td>
+				</tr>
+			</table>
+		</div>
+		</nav>
+		<div id="nav-height" style="height: 0px; opacity: 0;"></div>
+
+	</div>
+	</header>
+	<section class="container">
+	<div id="main_core_container">
+		<div id="media_header"></div>
+
+
+		<div id="sidebar">
+			<div id="sidebar_contents"></div>
+		</div>
+
+		<div id="title_bar">
+
+
+
+			<div id="headline_container">
+				<h1>Historical Forex Data</h1>
+				<h2>Request historical tick-by-tick data for your analytical
+					needs</h2>
+
+			</div>
+
+		</div>
+
+		<div id="main_content">
+			<div class="legacy">
+				<div id="CORE_LEFTBLOCK">
+					<div class="group">
+						<p>When developing their trading models and algorithms, API
+							programmers require accurate historical tick-by-tick forex data
+							for their quantitative and technical analysis.</p>
+						<p>Use this form to request tick-by-tick data corresponding to
+							actual rates executed on the OANDA fxTrade platform. The data is
+							filtered to ensure high quality and accuracy&#8212;this filtering
+							ensures the highest quality historical tick-by-tick data
+							available.</p>
+						<p>
+							<strong>To qualify for this service, you need an fxTrade
+								account with a balance of USD 1000 or more.</strong> (See below for
+							additional restrictions, and to find out about academic
+							exemptions.)
+						</p>
+
+					</div>
+					<div class="group">
+						<div class="one_column">
+							<div id="entry" align="center">
+								<div id="order_status" style="display: none;"></div>
+								<form id="tickerq">
+									<table class="table1" border="0">
+										<tbody>
+											<tr>
+												<td align="left" bgcolor="#eeeeee">Start date<br>
+												<span class="smallerfont">(MM/DD/YYYY)</span>:
+												</td>
+												<td align="left" bgcolor="#eeeeee"><input id="rcal1"
+													maxlength="10" name="rcal1" size="10">&#160;<a
+													href="javascript:NewCal('rcal1','mmddyyyy')"><img
+														src="/images/tools/cal.gif" border="0"
+														alt="Click here to pick the date" width="16" height="16"></a>
+													&#160;</td>
+												<td bgcolor="#e5e5e5">Instrument: <select
+													id="instrument" name="instrument"><option
+															value="undef">Fetching...</option></select> &#160;
+												</td>
+											</tr>
+											<tr>
+												<td bgcolor="#eeeeee">&#160;</td>
+												<td bgcolor="#eeeeee">
+													<div style="width: 60%;" align="center">to</div>
+												</td>
+												<td bgcolor="#e5e5e5">Granularity: <select id="granula"
+													name="gran"><option value="0">Real-time</option></select></td>
+											</tr>
+											<tr>
+												<td align="left" bgcolor="#eeeeee">End date<br>
+												<span class="smallerfont">(MM/DD/YYYY)</span>:
+												</td>
+												<td align="left" bgcolor="#eeeeee"><input id="rcal2"
+													maxlength="10" name="rcal2" size="10">&#160;<a
+													href="javascript:NewCal('rcal2','mmddyyyy')"><img
+														src="/images/tools/cal.gif" border="0"
+														alt="Click here to pick the date" width="16" height="16"></a></td>
+												<td bgcolor="#e5e5e5">Format: <select id="formata"
+													name="format"><option value="0">ASCII
+															Text</option>
+														<option value="1">CSV</option>
+														<option value="2">Pipe-delimited</option>
+														<option value="3">XML</option></select></td>
+											</tr>
+											<tr>
+												<td bgcolor="#eeeeee">I am an academic<br>faculty
+													member:
+												</td>
+												<td colspan="2" align="left" bgcolor="#eeeeee"><input
+													id="academia" name="academic" type="checkbox">
+													Check to apply for academic exemption. <br>
+												<br>
+												<em>Please make sure to include in the description
+														below details of the academic institution you are a
+														faculty member of and include an email address from the
+														academic institution.</em></td>
+											</tr>
+											<tr>
+												<td bgcolor="#eeeeee">Description of<br>intended
+													use:<br> (max. 250 characters)
+												</td>
+												<td colspan="2" align="left" bgcolor="#eeeeee"><textarea
+														cols="40" rows="6" name="comments"></textarea>
+													<div class="counter"></div></td>
+											</tr>
+											<tr>
+												<td bgcolor="#eeeeee">&#160;</td>
+												<td colspan="2" align="left" bgcolor="#eeeeee"><input
+													name="consent" type="checkbox"> I agree to the <a
+													href="/legal/ticks-license" target="_blank">terms and
+														conditions of the OANDA FXTicks License Agreement</a>.</td>
+											</tr>
+											<tr>
+												<td>&#160;</td>
+												<td colspan="2">
+													<div align="left">
+														<input class="button"
+															onclick="return requestInfo($('tickerq'), '/cgi-bin/fxticks/order.pl');"
+															type="submit" value="Place your Order">
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<div id="showInfo" class="error" style="display: none;"></div>
+							<div id="availability"></div>
+
+						</div>
+						<div class="spacer"></div>
+						<h2 class="nolink">Restrictions</h2>
+						<ul>
+							<li>To qualify for this service, you need an fxTrade account
+								with a balance of USD 1000 or more. (There is an exemption for
+								academics&#8212;see below.)</li>
+							<li>You can order data dated as far back as January 1, 2004,
+								and as recent as two (2) months ago. Dates begin and end at
+								midnight GMT.</li>
+							<li>Orders may take up to two weeks to process.</li>
+							<li>So that we can fairly accommodate as many people as
+								possible, each user account can have only one order queued for
+								processing at any time. You may submit a new order as soon as
+								your previous order is processed.</li>
+							<li>This service requires a Javascript-enabled browser.</li>
+							<li>OANDA Rates<sup>&#174;</sup> are proprietary. Access and
+								use is subject to a limited purpose, fixed-term <a
+								href="/legal/ticks-license">license agreement</a>. Use is
+								restricted to Licensee's own internal use. Rates are provided
+								"as is" without warranty of accuracy or completeness. All rights
+								reserved.
+							</li>
+						</ul>
+						<div class="spacer"></div>
+						<h2 class="nolink">Academic Exemptions</h2>
+						<p>If you are an academic, you can apply for an exemption from
+							the USD 1000 account minimum:</p>
+						<ol>
+							<li>You still must <a
+								href="/your_account/fxtrade/register/individual/beforeyoubegin">open
+									an fxTrade account</a>.
+							</li>
+							<li>Click the exemption box located at the bottom of the
+								form.</li>
+							<li>In the form's description box, supply details of your
+								academic institution and faculty and include an email address
+								from your academic institution.</li>
+						</ol>
+					</div>
+
+				</div>
+				<div id="CORE_RIGHTBLOCK"></div>
+				<div class="clear_div"></div>
+			</div>
+		</div>
+
+		<div class="clear_div"></div>
+	</div>
+
+	</section>
+	<section class="container">
+	<footer>
+	<ul>
+		<li id="first">
+			<h3>
+				<a href="/platforms">Platforms </a>
+			</h3> <a href="/trade-forex/interface">fxTrade Desktop </a> <a
+			href="/trade-forex/mobile/iphone/">iPhone App </a> <a
+			href="/trade-forex/mobile/ipad/">iPad App </a> <a
+			href="/trade-forex/mobile/android/">Android App </a> <a
+			href="/trade-forex/metatrader/">MetaTrader 4 </a>
+		</li>
+		<li>
+			<h3>
+				<a href="/learn/">Learn </a>
+			</h3> <a href="/learn/webinars/">Webinars </a> <a href="/help/videos/">How-to
+				Videos </a> <a href="/learn/intro-to-currency-trading/">Forex
+				Trading Basics </a> <a href="/learn/technical-analysis-for-traders/">Technical
+				Trading </a> <a href="/events">Events</a>
+
+		</li>
+		<li>
+			<h3>
+				<a href="/analysis/">News &amp; Analysis </a>
+			</h3> <a href="/technical-analysis-autochartist/">OANDA Technical
+				Analysis </a> <a href="/analysis/forex-order-book">Order Books </a> <a
+			href="/analysis/labs/">Forex Lab Tools </a> <a
+			href="http://www.marketpulse.com/" target="_blank">Forex News</a>
+
+		</li>
+		<li>
+			<h3>
+				<a href="http://oanda.com/corp/">About OANDA </a>
+			</h3> <a href="http://oanda.com/corp/">About Us </a> <a
+			href="http://oanda.com/corp/story/">Our Story </a> <a
+			href="https://fxtrade.oanda.com/community/forex-forum/">Forex
+				Forums </a> <a href="http://oanda.com/corp/forex-lab-notes/">Forex
+				Lab Blog </a> <a href="http://oanda.com/corp/news/">Press Room </a> <a
+			href="http://jobs.oanda.com/">Jobs </a>
+		</li>
+		<li class="last">
+			<h3>
+				<a href="http://oanda.com/corp/contact">Offices </a>
+			</h3> <a href="http://fxtrade.oanda.com/?&amp;stop-geo-ip=yes">OANDA
+				US </a> <a href="http://fxtrade.oanda.ca/?&amp;stop-geo-ip=yes">OANDA
+				Canada </a> <a href="http://fxtrade.oanda.co.uk/?&amp;stop-geo-ip=yes">OANDA
+				Europe </a> <a href="http://www.oanda.sg/?&amp;stop-geo-ip=yes">OANDA
+				Asia Pacific </a> <a href="http://www.oanda.jp">OANDA Japan </a>
+		</li>
+	</ul>
+	<div id="nav">
+		<div id="left">
+			<a href="http://oanda.com/site/terms-of-use">Terms of Use </a> <a
+				href="http://fxtrade.oanda.com/privacy">Privacy Policy </a> <a
+				href="http://fxtrade.oanda.com/site-map">Site Map </a> <a
+				href="http://fxtrade.oanda.com/help/customer-service/">Contact
+				Us </a> <a
+				href="http://fxtrade.oanda.com/help/customer-service/feedback"
+				class="last">Feedback </a>
+
+		</div>
+		<div id="right">
+			<a href="https://www.facebook.com/OANDAfx" target="_blank" id="fb"></a>
+			<a href="https://twitter.com/OANDA" target="_blank" id="tw"></a> <a
+				href="https://plus.google.com/+oanda/posts" target="_blank"
+				id="plus"></a> <a href="http://www.linkedin.com/company/oanda"
+				target="_blank" id="in"></a> <a
+				href="http://www.youtube.com/user/oanda" target="_blank" id="you"></a>
+			<a href="http://www.pinterest.com/oandafx/" target="_blank" id="pin"></a>
+		</div>
+	</div>
+	<p>
+		<span>&#169; 1996 - 2014 OANDA Corporation. All rights
+			reserved. "OANDA", "fxTrade" and OANDA's "fx" family of trademarks
+			are owned by OANDA Corporation. All other trademarks appearing on
+			this Website are the property of their respective owners. </span> <span></span>
+		<span>Leveraged trading is high risk and not suitable for all.
+			You could lose all of your deposited funds. Promotions and claims
+			only applicable to self-directed retail trading. Please refer to our
+			more detailed risk warning: <a href="/legal/risk-warning">http://fxtrade.oanda.com/legal/risk-warning</a>
+		</span> <span>Trading off-exchange foreign exchange on margin carries
+			a high level of risk and is not suitable for all investors. Trading
+			through an online platform carries additional risks. Please refer to
+			our more detailed Risk Warning, and <a
+			href="http://www.nfa.futures.org/NFA-investor-information/investor-alerts/forex-investor-alert-february2007.HTML">NFA's
+				FOREX INVESTOR ALERT</a>.
+		</span>
+
+	</p>
+	</footer></section>
+
+
+	<div class="nanorep_loadingData" id="nanoRepProxyContainer"
+		style="position: absolute; top: -500px; left: 0px;">
+		<span>Loading nanoRep</span>
+	</div>
+	<script type="text/javascript">
+		var _nRepData = _nRepData || [];
+		_nRepData['kb'] = '796749';
+		_nRepData['float'] = {
+			account : 'oanda',
+			cdcVersion : 3,
+			cdcFrame : '',
+			scriptVersion : '2.7.2.1'
+		}
+		_nRepData["context"] = {
+
+			"Domain" : "oc"
+
+		}
+
+		/* API here */;
+		(function() {
+			var windowLoadFunc = function() {
+				var _nRepData = window._nRepData || [];
+				_nRepData['windowLoaded'] = true;
+				if (typeof (_nRepData['windowOnload']) === 'function')
+					_nRepData['windowOnload']();
+			};
+			if (window.attachEvent)
+				window.attachEvent('onload', windowLoadFunc);
+			else if (window.addEventListener)
+				window.addEventListener('load', windowLoadFunc, false);
+			var sc = document.createElement('script');
+			sc.type = 'text/javascript';
+			sc.async = true;
+			sc.defer = true;
+			sc.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'my.nanorep.com/widget/scripts/float.js';
+			var _head = document.getElementsByTagName('head')[0];
+			_head.appendChild(sc);
+		})();
+	</script>
+	<script type="text/javascript">
+		function track() {
+			var ebRand = Math.random() + '';
+			ebRand = ebRand * 1000000;
+			var activityId = "353500";
+			if (window.location.protocol === 'https:') {
+				activityId = "353499";
+			}
+			document
+					.write('<scr'
+							+ 'ipt src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&ActivityID='
+							+ activityId
+							+ '&rnd='
+							+ ebRand
+							+ '&tp_oandaCookie='
+							+ document.cookie.match(/opc=[0-9a-zA-Z-]+/).pop()
+									.replace('opc=', '') + '"></scr' + 'ipt>');
+		}
+		function addTrackToOPCCallback() {
+			OANDAOPC.add_callback(track);
+		}
+		//<![CDATA[
+		if (document.cookie.match(/opc=[0-9A-Z-]+/)) {
+			track();
+		} else {
+			if (window.attachEvent)
+				window.attachEvent('onload', addTrackToOPCCallback);
+			else if (window.addEventListener)
+				window.addEventListener('load', addTrackToOPCCallback, false);
+		}
+		//]]>
+	</script>
+	<script
+		src="/wandacache/cpt-6b612e3313e9f4788502bd791f0e7ac8a9f7745c.js"></script>
+	<script type="text/javascript"
+		src="/wandacache/header_search-02b16727516a607ed506d31f7d918e3e0b782049.js"></script>
+	<script type="text/javascript"
+		src="/wandacache/main-34a0214c390ec3a9b8bd4a44c17be585ca17b24b.js"></script>
+	<!-- Adobe Digital Marketing Suite Tag Management code
+Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+More info available at http://www.adobe.com -->
+	<script type="text/javascript">
+		//<![CDATA[
+		var region = 'None';
+		var suite = '';
+
+		region = 'OC';
+		suite = 'oanda-dev';
+
+		fireOmniture([ 'fxTrade Products', 'FXTrade', 'Historical Data', '' ],
+				'fxtrade.oanda.com', 'en', region, suite, false);
+		//]]>
+	</script>
+	<!-- End Adobe Digital Marketing Suite Tag Management code -->
+	<script type="text/javascript"
+		src="/wandacache/jqueryConflictFix-905ca29d133456c116c70983299678e265112216.js"></script>
+	<script language="JavaScript" type="text/javascript"
+		src="/wandacache/ts_picker-8dd3f06e0805ccec9bbf74956510b2c3bfd69889.js"></script>
+	<script language="javascript" type="text/javascript">
+		function makeAnotherOrder() {
+			$('order_status').hide();
+			$('tickerq').show();
+		}
+		function requestInfo(thisForm, url) {
+			$('showInfo').style.backgroundColor = "#E9E9E9";
+			$('showInfo').style.display = "block";
+			$('showInfo').innerHTML = 'Processing...';
+			var params = $(thisForm).serialize();
+
+			var myAjax = new Ajax.Request(url, {
+				method : 'get',
+				parameters : params,
+				onSuccess : function(transport) {
+					$('order_status').update(transport.responseText);
+					$('tickerq').hide();
+					$('showInfo').hide();
+					$('order_status').show();
+				},
+				onFailure : function(transport) {
+					$('showInfo').style.backgroundColor = "#FFC0CB";
+					$('showInfo').update(transport.responseText);
+				}
+			});
+
+			return false;
+		}
+	</script>
+	<script type="text/javascript" language="javascript">
+		$('instrument').disable();
+		function setMaxLength() {
+			var x = document.getElementsByTagName('textarea');
+			var counter = document.createElement('div');
+			counter.className = 'counter';
+			for (var i = 0; i < x.length; i++) {
+				if (x[i].getAttribute('maxlength')) {
+					var counterClone = counter.cloneNode(true);
+					counterClone.relatedElement = x[i];
+					counterClone.innerHTML = '<span>0</span>/'
+							+ x[i].getAttribute('maxlength');
+					x[i].parentNode
+							.insertBefore(counterClone, x[i].nextSibling);
+					x[i].relatedElement = counterClone
+							.getElementsByTagName('span')[0];
+
+					x[i].onkeyup = x[i].onchange = checkMaxLength;
+					x[i].onkeyup();
+				}
+			}
+		}
+		function checkMaxLength() {
+			var maxLength = this.getAttribute('maxlength');
+			var currentLength = this.value.length;
+			if (currentLength > maxLength)
+				this.value = this.value.substring(0, maxLength);
+			this.relatedElement.firstChild.nodeValue = this.value.length;
+		}
+		setMaxLength();
+		{
+			var failure = function(t) {
+				var o = $('instrument').options;
+				while (o.length > 0) {
+					o[0].remove();
+				}
+				o[0] = new Option('Unavailable', 'Unavailable');
+			};
+			var instrumentajax = new Ajax.Request(
+					'/cgi-bin/fxticks/instruments.pl', {
+						method : 'post',
+						onSuccess : function(t) {
+							if (t.status == 200) {
+								var configuration = t.responseText.evalJSON();
+								var i = configuration.instruments;
+								var o = $('instrument').options;
+								var oo = $('instrument');
+								while (oo.length) {
+									oo.firstDescendant().remove();
+								}
+								for (var j = 0; j < i.length; j++) {
+									o[o.length] = new Option(i[j], i[j]);
+								}
+								$('instrument').enable();
+							} else {
+								failure(t);
+							}
+						},
+						onFailure : failure
+					});
+		}
+	</script>
+
+
+
+
+</body>
+</html>

@@ -40,9 +40,9 @@ public class UtilWeb {
 
 				final String urlLogin = reference.getString("oanda.page.login");
 
-				final WebClient client = new WebClient(BrowserVersion.FIREFOX_24);
+				final WebClient client = new WebClient(
+						BrowserVersion.FIREFOX_24);
 				client.getOptions().setJavaScriptEnabled(false);
-				
 
 				final HtmlPage login = client.getPage(urlLogin);
 
