@@ -1,0 +1,546 @@
+
+
+
+
+
+
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<script type="text/javascript">
+<!--
+	// Inlined /jslib/perf/log_start_time.js
+	window.start_time = new Date();
+//-->
+</script>
+<script type="text/javascript"
+	src="/wandacache/jquery-1.10.2-a5e9a32f67db1ee119e5cb7c23514155fbdbad58.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Historical Tick-by-Tick Order Status | OANDA fxTrade</title>
+	<!--[if lte IE 6]>
+    <link rel="stylesheet" href="/wandacache/ie6-788b5ddfa03c8e1a22d6cf85410c67a454a45a21.css" type="text/css"><![EndIf]-->
+	<!--[if IE 7]>
+    <link rel="stylesheet" href="/wandacache/ie7-83d250de236f97697eea7b9cb4e08dda6941515f.css" type="text/css"><![EndIf]-->
+	<!--[if IE 8]>
+    <link rel="stylesheet" href="/wandacache/ie8-72648ad42c60814276ebc0c068eb0e62bd6140e7.css" type="text/css"><![EndIf]-->
+	<!--[if gte IE 9]><!-->
+	<link rel="stylesheet"
+		href="/wandacache/590e8e4ff6f8a5d967e6e24004e17ae2dd6bd7fe.css"
+		type="text/css">
+		<!--<![endif]-->
+		<link rel="stylesheet" type="text/css"
+			href="/wandacache/legacy-330bb8e7bb148b7cb3ba89a62eab80ea3ea929ef.css">
+			<link rel="stylesheet" type="text/css"
+				href="/wandacache/fxticks-675d31ea24a605ffac4227b88f58e5ec2d5df43d.css">
+				<script type="text/javascript">
+					window.variant_name = window.CT_X_Seg = '__variant_name_placeholder__';
+				</script>
+				<meta name="description" content="">
+					<meta name="keywords"
+						content="failure,function,status,innerHTML,candidate,success,order,Order,else,Request,fxticks,Ajax,Status,Tick,method,post,cancel,pars,onFailure,onSuccess,substr,responseText,ajaxcall,FXTicks,process,ticks,window,specified,recognized,Queued,postBody,Processing,unable,location,cancelorder,length,temporarily,unavailable,historical,Data,Historical,entries1,parameters,charAt,search">
+						<meta name="language" content="en">
+
+							<meta name="viewport"
+								content="width=device-width, initial-scale=0.8, maximum-scale=2, minimum-scale=0.3">
+								<link href="https://plus.google.com/114987208887381442392"
+									rel="publisher">
+									<link rel="shortcut icon" href="/images/favicon.ico">
+										<link rel="canonical" href="/account/ticks">
+											<!--[if lt IE 9]>
+    <script type="text/javascript" src="/wandacache/ieFix-60b22fc76be091710099b5aabe0a88ecdbbb8ef9.js"></script><![endif]-->
+</head>
+<body id="top">
+	<div id="region_reminder" style="display: none;">
+		Based on your location, we have redirected you to <strong>fxTrade<span
+			id="region_reminder_division_name"></span></strong>. <span
+			id="region_reminder_controls"> <a onclick="return false;"
+			href="/">Close</a>
+		</span>
+	</div>
+
+
+
+
+
+
+	<header>
+	<div class="container">
+
+		<ul id="lang" class="dropdown">
+			<li class="cell"><a href="#">U.S. </a>
+				<ul class="sub_menu" style="display: none;">
+					<ul>
+						<li class="sub-cell"><a
+							href="http://www.oanda.sg/?&amp;stop-geo-ip=yes">ASIA PACIFIC</a></li>
+						<li class="sub-cell"><a
+							href="http://fxtrade.oanda.ca/?&amp;stop-geo-ip=yes">CANADA</a></li>
+						<li class="sub-cell"><a
+							href="http://fxtrade.oanda.co.uk/?&amp;stop-geo-ip=yes">EUROPE</a></li>
+						<li class="sub-cell"><a href="http://www.oanda.jp/">JAPAN</a></li>
+					</ul>
+				</ul></li>
+
+
+
+
+
+
+
+			<li class="cell" id="language_dropdown"><a href="#"
+				onclick="return false;"> ENGLISH </a>
+				<ul class="sub_menu" style="display: none;">
+					<li class="sub-cell"><a id="cns" href="/lang/cns/">&#31616;&#20307;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="cnt" href="/lang/cnt/">&#32321;&#39636;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="de" href="/lang/de/">DEUTSCH</a></li>
+
+
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="es" href="/lang/es/">ESPA&#209;OL</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="fr" href="/lang/fr/">FRAN&#199;AIS</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="it" href="/lang/it/">ITALIANO</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ja" href="/lang/ja/">&#26085;&#26412;&#35486;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ko" href="/lang/ko/">&#54620;&#44397;&#50612;</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="pt" href="/lang/pt/">PORTUGU&#202;S</a></li>
+
+
+
+
+
+
+
+					<li class="sub-cell"><a id="ru" href="/lang/ru/">P&#1059;&#1057;&#1057;&#1050;&#1048;&#1049;</a></li>
+
+
+
+
+				</ul></li>
+
+		</ul>
+		<div id="sticky-trigger"></div>
+		<nav id="nav" style="padding-bottom: 35px">
+		<div id="top">
+			<a href="http://fxtrade.oanda.com/?&amp;stop-geo-ip=yes" id="logo"><img
+				src="/wandacache/logo-3b63e087b32392711e70d1abc159ef8f777acf4b.png"></a>
+			<div id="top-right">
+
+				<div id="search-bar">
+					<input type="search" id="query" name="q" maxlength="255"
+						placeholder="Enter keyword...
+"
+						onkeypress="return checkSubmit(event)"><input
+						type="submit" value="" id="magnif" onclick="searchRedirect()">
+				</div>
+			</div>
+		</div>
+		<div id="bot">
+			<table id="main-nav">
+				<tr>
+					<td><a href="/why/">Why OANDA </a></td>
+					<td><a href="/platforms">Platforms </a></td>
+					<td><a href="/markets">Markets </a></td>
+					<td><a href="/learn/">Learn </a></td>
+					<td><a href="/analysis/">News &amp; Analysis </a></td>
+					<td><a href="/help/">Support </a></td>
+					<td class="last-list"><a
+						href="http://oanda.com/currency/converter/">Currency Converter
+					</a></td>
+					<td class="last-list"><a href="http://oanda.com/rates/">Exchange
+							Rates for Business </a></td>
+				</tr>
+			</table>
+		</div>
+		</nav>
+		<div id="nav-height" style="height: 0px; opacity: 0;"></div>
+
+	</div>
+	</header>
+	<section class="container">
+	<div id="main_core_container">
+		<div id="media_header"></div>
+
+
+		<div id="sidebar">
+			<div id="sidebar_contents"></div>
+		</div>
+
+		<div id="title_bar">
+
+
+
+			<div id="headline_container">
+				<h1>Historical Tick-by-Tick Order Status</h1>
+
+			</div>
+
+		</div>
+
+		<div id="main_content">
+			<div class="legacy">
+				<div id="CORE_LEFTBLOCK">
+					<table id="tab_header">
+						<tbody>
+							<tr>
+								<td><h2>Orders</h2></td>
+							</tr>
+						</tbody>
+					</table>
+					<table id="order-table">
+						<tbody id="entries1">
+							<tr>
+								<th id="tabhead1">Order Number</th>
+								<th>Submitted</th>
+								<th>From</th>
+								<th>To</th>
+								<th>Instrument</th>
+								<th>Format</th>
+								<th>Status</th>
+							</tr>
+							<tr class="even">
+								<td align="center">1092183</td>
+								<td>24-Mar-2012</td>
+								<td>01-Jan-2004</td>
+								<td>31-Jan-2011</td>
+								<td align="center">EUR/USD</td>
+								<td>CSV</td>
+								<td>Expired</td>
+							</tr>
+							<tr class="odd">
+								<td align="center">1092193</td>
+								<td>24-Mar-2012</td>
+								<td>01-Jan-2004</td>
+								<td>31-Dec-2011</td>
+								<td align="center">GBP/USD</td>
+								<td>CSV</td>
+								<td>Expired</td>
+							</tr>
+							<tr class="even">
+								<td align="center">1092203</td>
+								<td>24-Mar-2012</td>
+								<td>01-Jan-2004</td>
+								<td>31-Dec-2011</td>
+								<td align="center">USD/CAD</td>
+								<td>CSV</td>
+								<td>Expired</td>
+							</tr>
+							<tr class="odd">
+								<td align="center">1092213</td>
+								<td>24-Mar-2012</td>
+								<td>01-Jan-2004</td>
+								<td>31-Dec-2011</td>
+								<td align="center">USD/CHF</td>
+								<td>CSV</td>
+								<td>Expired</td>
+							</tr>
+							<tr class="even">
+								<td align="center">1092223</td>
+								<td>24-Mar-2012</td>
+								<td>01-Jan-2004</td>
+								<td>31-Dec-2011</td>
+								<td align="center">USD/JPY</td>
+								<td>CSV</td>
+								<td>Expired</td>
+							</tr>
+							<tr class="odd">
+								<td align="center">1144535</td>
+								<td>28-Apr-2014</td>
+								<td>01-Jan-2004</td>
+								<td>01-Jan-2014</td>
+								<td align="center">EUR/USD</td>
+								<td>ASCII Text</td>
+								<td><a
+									href="/fxticks_export/BCA32C173CC2C4B545F75D1046B7206F.zip">Completed:
+										download&nbsp;file</a></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="8" style="text-align: center;"><a
+									href="/trade-forex/fxtrade/historical-data">Make an order </a>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<div id="CORE_RIGHTBLOCK"></div>
+				<div class="clear_div"></div>
+			</div>
+		</div>
+
+		<div class="clear_div"></div>
+	</div>
+
+	</section>
+	<section class="container">
+	<footer>
+	<ul>
+		<li id="first">
+			<h3>
+				<a href="/platforms">Platforms </a>
+			</h3> <a href="/trade-forex/interface">fxTrade Desktop </a> <a
+			href="/trade-forex/mobile/iphone/">iPhone App </a> <a
+			href="/trade-forex/mobile/ipad/">iPad App </a> <a
+			href="/trade-forex/mobile/android/">Android App </a> <a
+			href="/trade-forex/metatrader/">MetaTrader 4 </a>
+		</li>
+		<li>
+			<h3>
+				<a href="/learn/">Learn </a>
+			</h3> <a href="/learn/webinars/">Webinars </a> <a href="/help/videos/">How-to
+				Videos </a> <a href="/learn/intro-to-currency-trading/">Forex
+				Trading Basics </a> <a href="/learn/technical-analysis-for-traders/">Technical
+				Trading </a> <a href="/events">Events</a>
+
+		</li>
+		<li>
+			<h3>
+				<a href="/analysis/">News &amp; Analysis </a>
+			</h3> <a href="/technical-analysis-autochartist/">OANDA Technical
+				Analysis </a> <a href="/analysis/forex-order-book">Order Books </a> <a
+			href="/analysis/labs/">Forex Lab Tools </a> <a
+			href="http://www.marketpulse.com/" target="_blank">Forex News</a>
+
+		</li>
+		<li>
+			<h3>
+				<a href="http://oanda.com/corp/">About OANDA </a>
+			</h3> <a href="http://oanda.com/corp/">About Us </a> <a
+			href="http://oanda.com/corp/story/">Our Story </a> <a
+			href="https://fxtrade.oanda.com/community/forex-forum/">Forex
+				Forums </a> <a href="http://oanda.com/corp/forex-lab-notes/">Forex
+				Lab Blog </a> <a href="http://oanda.com/corp/news/">Press Room </a> <a
+			href="http://jobs.oanda.com/">Jobs </a>
+		</li>
+		<li class="last">
+			<h3>
+				<a href="http://oanda.com/corp/contact">Offices </a>
+			</h3> <a href="http://fxtrade.oanda.com/?&amp;stop-geo-ip=yes">OANDA
+				US </a> <a href="http://fxtrade.oanda.ca/?&amp;stop-geo-ip=yes">OANDA
+				Canada </a> <a href="http://fxtrade.oanda.co.uk/?&amp;stop-geo-ip=yes">OANDA
+				Europe </a> <a href="http://www.oanda.sg/?&amp;stop-geo-ip=yes">OANDA
+				Asia Pacific </a> <a href="http://www.oanda.jp">OANDA Japan </a>
+		</li>
+	</ul>
+	<div id="nav">
+		<div id="left">
+			<a href="http://oanda.com/site/terms-of-use">Terms of Use </a> <a
+				href="http://fxtrade.oanda.com/privacy">Privacy Policy </a> <a
+				href="http://fxtrade.oanda.com/site-map">Site Map </a> <a
+				href="http://fxtrade.oanda.com/help/customer-service/">Contact
+				Us </a> <a
+				href="http://fxtrade.oanda.com/help/customer-service/feedback"
+				class="last">Feedback </a>
+
+		</div>
+		<div id="right">
+			<a href="https://www.facebook.com/OANDAfx" target="_blank" id="fb"></a>
+			<a href="https://twitter.com/OANDA" target="_blank" id="tw"></a> <a
+				href="https://plus.google.com/+oanda/posts" target="_blank"
+				id="plus"></a> <a href="http://www.linkedin.com/company/oanda"
+				target="_blank" id="in"></a> <a
+				href="http://www.youtube.com/user/oanda" target="_blank" id="you"></a>
+			<a href="http://www.pinterest.com/oandafx/" target="_blank" id="pin"></a>
+		</div>
+	</div>
+	<p>
+		<span>&#169; 1996 - 2014 OANDA Corporation. All rights
+			reserved. "OANDA", "fxTrade" and OANDA's "fx" family of trademarks
+			are owned by OANDA Corporation. All other trademarks appearing on
+			this Website are the property of their respective owners. </span> <span></span>
+		<span>Leveraged trading is high risk and not suitable for all.
+			You could lose all of your deposited funds. Promotions and claims
+			only applicable to self-directed retail trading. Please refer to our
+			more detailed risk warning: <a href="/legal/risk-warning">http://fxtrade.oanda.com/legal/risk-warning</a>
+		</span> <span>Trading off-exchange foreign exchange on margin carries
+			a high level of risk and is not suitable for all investors. Trading
+			through an online platform carries additional risks. Please refer to
+			our more detailed Risk Warning, and <a
+			href="http://www.nfa.futures.org/NFA-investor-information/investor-alerts/forex-investor-alert-february2007.HTML">NFA's
+				FOREX INVESTOR ALERT</a>.
+		</span>
+
+	</p>
+	</footer></section>
+
+
+	<div class="nanorep_loadingData" id="nanoRepProxyContainer"
+		style="position: absolute; top: -500px; left: 0px;">
+		<span>Loading nanoRep</span>
+	</div>
+	<script type="text/javascript">
+		var _nRepData = _nRepData || [];
+		_nRepData['kb'] = '796749';
+		_nRepData['float'] = {
+			account : 'oanda',
+			cdcVersion : 3,
+			cdcFrame : '',
+			scriptVersion : '2.7.2.1'
+		}
+		_nRepData["context"] = {
+
+			"Domain" : "oc"
+
+		}
+
+		/* API here */;
+		(function() {
+			var windowLoadFunc = function() {
+				var _nRepData = window._nRepData || [];
+				_nRepData['windowLoaded'] = true;
+				if (typeof (_nRepData['windowOnload']) === 'function')
+					_nRepData['windowOnload']();
+			};
+			if (window.attachEvent)
+				window.attachEvent('onload', windowLoadFunc);
+			else if (window.addEventListener)
+				window.addEventListener('load', windowLoadFunc, false);
+			var sc = document.createElement('script');
+			sc.type = 'text/javascript';
+			sc.async = true;
+			sc.defer = true;
+			sc.src = ('https:' == document.location.protocol ? 'https://'
+					: 'http://')
+					+ 'my.nanorep.com/widget/scripts/float.js';
+			var _head = document.getElementsByTagName('head')[0];
+			_head.appendChild(sc);
+		})();
+	</script>
+	<script type="text/javascript">
+		function track() {
+			var ebRand = Math.random() + '';
+			ebRand = ebRand * 1000000;
+			var activityId = "353500";
+			if (window.location.protocol === 'https:') {
+				activityId = "353499";
+			}
+			document
+					.write('<scr'
+							+ 'ipt src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&ActivityID='
+							+ activityId
+							+ '&rnd='
+							+ ebRand
+							+ '&tp_oandaCookie='
+							+ document.cookie.match(/opc=[0-9a-zA-Z-]+/).pop()
+									.replace('opc=', '') + '"></scr' + 'ipt>');
+		}
+		function addTrackToOPCCallback() {
+			OANDAOPC.add_callback(track);
+		}
+		//<![CDATA[
+		if (document.cookie.match(/opc=[0-9A-Z-]+/)) {
+			track();
+		} else {
+			if (window.attachEvent)
+				window.attachEvent('onload', addTrackToOPCCallback);
+			else if (window.addEventListener)
+				window.addEventListener('load', addTrackToOPCCallback, false);
+		}
+		//]]>
+	</script>
+	<script
+		src="/wandacache/cpt-6b612e3313e9f4788502bd791f0e7ac8a9f7745c.js"></script>
+	<script type="text/javascript"
+		src="/wandacache/header_search-02b16727516a607ed506d31f7d918e3e0b782049.js"></script>
+	<script type="text/javascript"
+		src="/wandacache/main-34a0214c390ec3a9b8bd4a44c17be585ca17b24b.js"></script>
+	<!-- Adobe Digital Marketing Suite Tag Management code
+Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+More info available at http://www.adobe.com -->
+	<script type="text/javascript">
+		//<![CDATA[
+		var region = 'None';
+		var suite = '';
+
+		region = 'OC';
+		suite = 'oanda-dev';
+
+		fireOmniture([ 'fxTrade Account', 'Ticks', '', '' ],
+				'fxtrade.oanda.com', 'en', region, suite, false);
+		//]]>
+	</script>
+	<!-- End Adobe Digital Marketing Suite Tag Management code -->
+	<script>
+		function cancel_order(candidate) {
+			var failure = function(t) {
+				$('num_' + candidate).innerHTML = 'Queued (unable to cancel)';
+			};
+			var success = function(t) {
+				if (t.status == 200) {
+					$('num_' + candidate).innerHTML = t.responseText;
+				} else {
+					failure(t);
+				}
+			}
+			var pars = '&u=' + candidate;
+			var ajaxcall = new Ajax.Request('/cgi-bin/fxticks/cancelorder.pl',
+					{
+						method : 'post',
+						postBody : pars,
+						onSuccess : success,
+						onFailure : failure
+					});
+		}
+	</script>
+	<script type="text/javascript"
+		src="/wandacache/jqueryConflictFix-905ca29d133456c116c70983299678e265112216.js"></script>
+
+</body>
+</html>
